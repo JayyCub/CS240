@@ -1,0 +1,45 @@
+CREATE TABLE AuthTable 
+(
+	auth_Token	VARCHAR(50) UNIQUE,
+	userName	VARCHAR(50) UNIQUE,
+	personID	VARCHAR(50)
+),
+
+
+CREATE TABLE Events
+(
+    eventID VARCHAR(50),
+    associatedUsername VARCHAR(50),
+    personID VARCHAR(50),
+    latitude REAL,
+    longitude REAL,
+    country VARCHAR(50),
+    city VARCHAR(50),
+    eventType VARCHAR(50),
+    eventYear INT
+),
+
+
+CREATE TABLE People
+(
+    personID VARCHAR(50),
+    associatedUsername VARCHAR(50),
+    firstName VARCHAR(50),
+    lastName VARCHAR(50),
+    gender CHAR(1),
+    father VARCHAR(50),
+    mother VARCHAR(50),
+    spouse VARCHAR(50)
+),
+
+
+CREATE TABLE Users 
+(
+	username	VARCHAR(50) UNIQUE,
+	password	VARCHAR(50),
+	email	VARCHAR(50),
+	firstName	VARCHAR(50),
+	lastName	VARCHAR(50),
+	gender	CHAR(1),
+	personId	VARCHAR(50) UNIQUE
+)
