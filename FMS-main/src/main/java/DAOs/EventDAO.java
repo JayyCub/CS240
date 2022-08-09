@@ -7,11 +7,21 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * EventDAO class to access Events from the DB
+ */
 public class EventDAO {
+    /** Connection to the DB */
     private Connection conn;
 
+    /** Constructor to create an EventDAO object and establish the DB connection */
     public EventDAO(Connection connection){this.conn = connection;}
 
+    /**
+     * Insert EVent object into DB
+     * @param newEvent Event to insert
+     * @return Boolean, if insertion was successful
+     */
     public boolean insertEvent(Event newEvent) {
         String sqlInsertion = "INSERT INTO Events (eventID, associatedUsername, personID, latitude, longitude, " +
                 "country, city, eventType, eventYear) VALUES(?,?,?,?,?,?,?,?,?)";
@@ -36,6 +46,11 @@ public class EventDAO {
         return true;
     }
 
+    /**
+     * Get all events from DB with the associated username
+     * @param username Given username string
+     * @return List of events from DB, returns null if none found or error
+     */
     public List<Event> getAssocatedEvents(String username){
         String sqlString = "SELECT * FROM Events WHERE associatedUsername=?";
         try (PreparedStatement statement = conn.prepareStatement(sqlString)) {
@@ -60,6 +75,9 @@ public class EventDAO {
         }
     }
 
+    /**
+     * Clear all events from the DB
+     */
     public void clearEvents(){
         try {
             Statement statement = conn.createStatement();
@@ -71,33 +89,36 @@ public class EventDAO {
         }
     }
 
-
+    /**
+     * Find an event in the DB with given personID and event type
+     * @param personID PersonID, string
+     * @param eventType eventType, string
+     * @return Thenevent from the DB, null if error
+     */
     public Event find(String personID, String eventType) {
-        ResultSet rs = null;
+        ResultSet resultSet = null;
         String sql = "SELECT * FROM Events WHERE PersonID = ? AND EventType = ?";
         try (PreparedStatement stmt = conn.prepareStatement(sql)) {
             stmt.setString(1, personID);
             stmt.setString(2, eventType);
-            rs = stmt.executeQuery();
-            if (rs.next()) {
-                return new Event(rs.getString(1), rs.getString(2),
-                        rs.getString(3), rs.getDouble(4), rs.getDouble(5),
-                        rs.getString(6), rs.getString(7), rs.getString(8),
-                        rs.getInt(9));
+            resultSet = stmt.executeQuery();
+            if (resultSet.next()) {
+                return new Event(resultSet.getString(1), resultSet.getString(2),
+                        resultSet.getString(3), resultSet.getDouble(4), resultSet.getDouble(5),
+                        resultSet.getString(6), resultSet.getString(7), resultSet.getString(8),
+                        resultSet.getInt(9));
             }
         } catch (SQLException e) {
-            //e.printStackTrace();
             System.out.println("Error encountered while finding event");
         } finally {
-            if(rs != null) {
+            if(resultSet != null) {
                 try {
-                    rs.close();
+                    resultSet.close();
                 } catch (SQLException e) {
                     e.printStackTrace();
                 }
             }
         }
         return null;
-
     }
 }

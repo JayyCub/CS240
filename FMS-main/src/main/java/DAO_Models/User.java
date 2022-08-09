@@ -1,14 +1,32 @@
 package DAO_Models;
 
+/** The User class */
 public class User {
+    /** String for the User username */
     private String username;
+    /** String for the User password */
     private String password;
+    /** String for the User email */
     private String email;
+    /** String for the User first name */
     private String firstName;
+    /** String for the User last name */
     private String lastName;
+    /** String for the User gender */
     private String gender;
+    /** String for the User personID */
     private String personID;
 
+    /**
+     * Constructor for the User that assigns params to variables
+     * @param username String for the username
+     * @param password String for the password
+     * @param email String for the email
+     * @param firstName String for the first name
+     * @param lastName String for the last name
+     * @param gender String for the gender
+     * @param personID String for the personID
+     */
     public User(String username, String password, String email, String firstName, String lastName, String gender, String personID) {
         this.username = username;
         this.password = password;

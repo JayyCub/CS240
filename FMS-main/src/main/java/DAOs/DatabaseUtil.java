@@ -4,9 +4,17 @@ import passoffmodels.User;
 
 import java.sql.*;
 
+/**
+ * Class to manage communication with the Database
+ */
 public class DatabaseUtil {
+    /** Connection to DB */
     private Connection conn;
 
+    /**
+     * Create connection to the DB
+     * @return The established conneciton
+     */
     public Connection open(){
         String CONN_URL = "jdbc:sqlite:Family_Map.sqlite";
         try {
@@ -19,10 +27,17 @@ public class DatabaseUtil {
         return conn;
     }
 
+    /**
+     * Return the current DB connection
+     * @return DB Connection
+     */
     public Connection getConn() {
         return conn;
     }
 
+    /**
+     * Save changes to the DB
+     */
     public void commit(){
         try {
             conn.commit();
@@ -32,6 +47,10 @@ public class DatabaseUtil {
         }
     }
 
+    /**
+     * Close connection to the database
+     * @param commit Determine if changes need to be saved
+     */
     public void close(boolean commit) {
         try {
             if (commit) {
@@ -45,6 +64,11 @@ public class DatabaseUtil {
         }
     }
 
+    /**
+     * Delete persons and events associaed to a given username
+     * @param username String username
+     * @throws SQLException Throws error if the database cannot be reached or statement cannot be executed
+     */
     public void clearAssociatedData(String username) throws SQLException {
         String peopleSQL = "DELETE FROM People WHERE associatedUsername=?";
         try (PreparedStatement statement = conn.prepareStatement(peopleSQL)){

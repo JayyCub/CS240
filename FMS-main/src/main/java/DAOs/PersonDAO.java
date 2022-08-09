@@ -7,11 +7,24 @@ import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * PersonDAO class, accesses Persons DB data
+ */
 public class PersonDAO {
+    /** Connection to the DB */
     private Connection conn;
 
+    /**
+     * Constructor to create a PersonDAO with the current DB connection
+     * @param connection Connection to DB
+     */
     public PersonDAO(Connection connection){this.conn = connection;}
 
+    /**
+     * Insert Person object into DB
+     * @param newPerson Person object to insetr
+     * @return Boolean, if insertion was successful
+     */
     public boolean insertPerson(Person newPerson) {
         String sqlInsertion = "INSERT INTO People (personID, associatedUsername, firstName, lastName, gender, father, "+
                 "mother, spouse) VALUES(?,?,?,?,?,?,?,?)";
@@ -35,6 +48,11 @@ public class PersonDAO {
         return true;
     }
 
+    /**
+     * Retrieve person from the DB
+     * @param personID personID string to check for in DB
+     * @return Person object retrieved from DB
+     */
     public Person retrieveAccount(String personID) {
         String sqlString = "SELECT * FROM People WHERE personID=?";
         try (PreparedStatement statement = conn.prepareStatement(sqlString)) {
@@ -53,6 +71,11 @@ public class PersonDAO {
         }
     }
 
+    /**
+     * Get all people from the database with the associated username
+     * @param username username to find associations with in the DB
+     * @return List of Persons from the DB
+     */
     public List<Person> getAssocatedPeople(String username){
         String sqlString = "SELECT * FROM People WHERE associatedUsername=?";
         try (PreparedStatement statement = conn.prepareStatement(sqlString)) {
@@ -77,6 +100,9 @@ public class PersonDAO {
         }
     }
 
+    /**
+     * Clear all persons from the DB
+     */
     public void clearPeople(){
         try {
             Statement statement = conn.createStatement();

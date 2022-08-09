@@ -5,11 +5,26 @@ import DAO_Models.User;
 import java.sql.*;
 import java.util.Objects;
 
+/**
+ * UserDAO object, User database access
+ */
 public class UserDAO {
+    /**
+     * Connection to DB
+     */
     private Connection conn;
 
+    /**
+     * Constructor for UserDAO object, associates connection to DB
+     * @param conn
+     */
     public UserDAO(Connection conn){this.conn = conn;}
 
+    /**
+     * Insert user object to the DB
+     * @param newUser User object
+     * @return Boolean, if the insertion was successful
+     */
     public boolean insertUser(User newUser) {
         String sqlInsertion = "INSERT INTO Users (username, password, email, firstName, lastName, gender, " +
                 "personId) VALUES(?,?,?,?,?,?,?)";
@@ -32,6 +47,9 @@ public class UserDAO {
         return true;
     }
 
+    /**
+     * Clear all users from the DB
+     */
     public void clearUsers(){
         try {
             Statement statement = conn.createStatement();
@@ -43,6 +61,11 @@ public class UserDAO {
         }
     }
 
+    /**
+     * Get User object from database give a username
+     * @param username String, username to search for
+     * @return User object returned from DB
+     */
     public User retrieveAccount(String username) {
         String sqlString = "SELECT * FROM Users WHERE username=?";
         try (PreparedStatement statement = conn.prepareStatement(sqlString)) {
@@ -61,6 +84,11 @@ public class UserDAO {
         }
     }
 
+    /**
+     * Check if the DB contains a User with the given username
+     * @param username String, username to search for
+     * @return Boolean, if the account exists
+     */
     public boolean checkIfAccountExists(String username) {
         String sqlString = "SELECT * FROM Users WHERE username=?";
         try (PreparedStatement statement = conn.prepareStatement(sqlString)) {

@@ -1,10 +1,22 @@
 package DAO_Models;
 
+/**
+ * AuthToken. Used to validate user actions
+ */
 public class AuthToken {
+    /** The authoken string **/
     private String authToken;
+    /** The username associaed with the AuthToken **/
     private String username;
+    /** PersonID associated with an authtoken **/
     private String personID;
 
+    /**
+     * Constructor to create a AuthToken object and assign its variables
+     * @param authToken The given AuthToken
+     * @param username The given username
+     * @param personID The given personID
+     */
     public AuthToken(String authToken, String username, String personID){
         this.authToken = authToken;
         this.username = username;

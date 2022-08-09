@@ -11,41 +11,26 @@ import com.sun.net.httpserver.HttpServer;
 import java.io.IOException;
 import java.net.InetSocketAddress;
 
+/**
+ * THE Server
+ */
 public class Server {
 
-    // The maximum number of waiting incoming connections to queue.
-    // While this value is necessary, for our purposes it is unimportant.
-    // Take CS 460 for a deeper understanding of what it means.
     private static final int MAX_WAITING_CONNECTIONS = 12;
 
-    // Java provides an HttpServer class that can be used to embed
-    // an HTTP server in any Java program.
-    // Using the HttpServer class, you can easily make a Java
-    // program that can receive incoming HTTP requests, and respond
-    // with appropriate HTTP responses.
-    // HttpServer is the class that actually implements the HTTP network
-    // protocol (be glad you don't have to).
-    // The "server" field contains the HttpServer instance for this program,
-    // which is initialized in the "run" method below.
+    /**
+     * An identifier for the server
+     */
     private HttpServer server;
 
-    // This method initializes and runs the server.
-    // The "portNumber" parameter specifies the port number on which the
-    // server should accept incoming client connections.
+    /**
+     * Takes the port number and starts the server running on that local port
+     * @param portNumber String, but expected to be numerical value (i.e. "8080")
+     */
     private void run(String portNumber) {
-
-        // Since the server has no "user interface", it should display "log"
-        // messages containing information about its internal activities.
-        // This allows a system administrator (or you) to know what is happening
-        // inside the server, which can be useful for diagnosing problems
-        // that may occur.
         System.out.println("Initializing HTTP Server on " + portNumber);
 
         try {
-            // Create a new HttpServer object.
-            // Rather than calling "new" directly, we instead create
-            // the object by calling the HttpServer.create static factory method.
-            // Just like "new", this method returns a reference to the new object.
             server = HttpServer.create(
                     new InetSocketAddress(Integer.parseInt(portNumber)),
                     MAX_WAITING_CONNECTIONS);
@@ -55,8 +40,6 @@ public class Server {
             return;
         }
 
-        // Indicate that we are using the default "executor".
-        // This line is necessary, but its function is unimportant for our purposes.
         server.setExecutor(null);
 
         System.out.println("Creating contexts");
@@ -79,9 +62,10 @@ public class Server {
         System.out.println("Server started");
     }
 
-    // "main" method for the server program
-    // "args" should contain one command-line argument, which is the port number
-    // on which the server should accept incoming client connections.
+    /**
+     *
+     * @param args , List of program command-line arguments, expects [0] to be a port number (i.e. "8080")
+     */
     public static void main(String[] args) {
         String portNumber = args[0];
         new Server().run(portNumber);

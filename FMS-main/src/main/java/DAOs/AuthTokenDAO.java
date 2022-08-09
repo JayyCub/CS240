@@ -5,13 +5,23 @@ import DAO_Models.User;
 
 import java.sql.*;
 
+/** AuthTokenDAO. Methods to store and access authTokens */
 public class AuthTokenDAO {
+    /** Connection to the Database */
     private Connection conn;
 
+    /**
+     * Constructor that creates stores connection to database
+     * @param conn Connection to the DB
+     */
     public AuthTokenDAO(Connection conn){
         this.conn = conn;
     }
 
+    /**
+     * Using a given authToken, insert into database
+     * @param authToken The given authToken object
+     */
     public void insertToken(AuthToken authToken){
         String sqlInsertion = "INSERT INTO AuthTable (auth_Token, userName, personID) VALUES(?,?,?)";
 
@@ -27,6 +37,10 @@ public class AuthTokenDAO {
         }
     }
 
+    /**
+     * Using a given AuthToken, update its row in the database
+     * @param authToken A given AuthToken
+     */
     public void updateToken(AuthToken authToken){
         String sqlInsertion = "UPDATE AuthTable SET auth_Token=? WHERE userName=?";
 
@@ -40,6 +54,12 @@ public class AuthTokenDAO {
             System.out.println(e);
         }
     }
+
+    /**
+     * Using a username, check if the user has an AuthToken
+     * @param username Username string
+     * @return Boolean, if token exists?
+     */
     public boolean checkIfTokenExists(String username) {
         String sqlString = "SELECT * FROM AuthTable WHERE username=?";
         try (PreparedStatement statement = conn.prepareStatement(sqlString)) {
@@ -53,6 +73,11 @@ public class AuthTokenDAO {
         }
     }
 
+    /**
+     * Retrieve an AuthToken from DB, using a username
+     * @param username A given username string
+     * @return AuthToken object
+     */
     public AuthToken retrieveToken(String username) {
         String sqlString = "SELECT * FROM AuthTable WHERE username=?";
         try (PreparedStatement statement = conn.prepareStatement(sqlString)) {
@@ -69,6 +94,11 @@ public class AuthTokenDAO {
         }
     }
 
+    /**
+     * Check if the AuthToken given in a request exists in the database. Validation method.
+     * @param authToken AuthToken ID string
+     * @return Boolean, if token exists in DB
+     */
     public boolean checkIfTokenExistsFromToken(String authToken) {
         String sqlString = "SELECT * FROM AuthTable WHERE auth_Token=?";
         try (PreparedStatement statement = conn.prepareStatement(sqlString)) {
@@ -82,6 +112,11 @@ public class AuthTokenDAO {
         }
     }
 
+    /**
+     * Retrieve a token form the database, based on a given token ID string
+     * @param authToken given AuthToken string
+     * @return AuthToken object pulled from DB
+     */
     public AuthToken retrieveTokenFromToken(String authToken) {
         String sqlString = "SELECT * FROM AuthTable WHERE auth_Token=?";
         try (PreparedStatement statement = conn.prepareStatement(sqlString)) {
@@ -98,6 +133,9 @@ public class AuthTokenDAO {
         }
     }
 
+    /**
+     * Clear all tokens from the database
+     */
     public void clearTokens(){
         try {
             Statement statement = conn.createStatement();
