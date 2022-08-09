@@ -13,15 +13,25 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Class to manage the retrieval of event command
+ */
 public class EventService {
+    /** String, authtoken used to access DB */
     private String authToken;
 
+    /**
+     * Constructor to set value of authToken
+     * @param authToken String, authToken ID
+     */
     public EventService(String authToken){
         this.authToken = authToken;
     }
 
-    // Do this by getting the user's personID based on the given authtoken
-    // Then, find all people with the associated username
+    /**
+     * Find all events associated to a user, Username retrieved based on AuthToken ID
+     * @return ResultMessage, returns data or error message
+     */
     public ResultMessage findAllEvents(){
         System.out.println("Finding events associated to authToken " + authToken);
         DatabaseUtil DB = new DatabaseUtil();
@@ -51,7 +61,11 @@ public class EventService {
                 null, null, null, null, null, returnEvents, null, true);
     }
 
-    // Find Event in database with given EventID, only if they are associated to authToken
+    /**
+     * Find one event from the DB based on AuthToken verification and Event ID
+     * @param eventID String, EventID
+     * @return Result message with data or error message
+     */
     public ResultMessage findEvent(String eventID){
         System.out.println("Finding Event with ID " + eventID + ", authToken " + authToken);
         DatabaseUtil DB = new DatabaseUtil();

@@ -1,7 +1,12 @@
 package ReqRes;
 
+/**
+ * Class to structure the response messages given to the program user
+ */
 public class ResultMessage {
-
+    /**
+     * Variables to hold data or messages
+     */
     private String authtoken;
     private String username;
     private String personID;
@@ -23,6 +28,29 @@ public class ResultMessage {
     private String message;
     private boolean success;
 
+    /**
+     * Constructor to initialize response data variables
+     * @param authtoken String
+     * @param username String
+     * @param personID String
+     * @param associatedUsername String
+     * @param firstName String
+     * @param lastName String
+     * @param gender String
+     * @param fatherID String
+     * @param motherID String
+     * @param spouseID String
+     * @param eventID String
+     * @param latitude Double
+     * @param longitude Double
+     * @param country String
+     * @param city String
+     * @param eventType String
+     * @param year Integer
+     * @param data List of Objects
+     * @param message String
+     * @param success Boolean
+     */
     public ResultMessage (String authtoken, String username, String personID, String associatedUsername,
                           String firstName, String lastName, String gender, String fatherID, String motherID,
                           String spouseID, String eventID, Double latitude, Double longitude, String country,
@@ -50,6 +78,10 @@ public class ResultMessage {
         this.success = success;
     }
 
+    /**
+     * Get value of success, checks if resultMessage lists command as successful or not
+     * @return Boolean, success
+     */
     public boolean getSuccess(){
         return this.success;
     }

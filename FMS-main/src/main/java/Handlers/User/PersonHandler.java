@@ -11,9 +11,17 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 
+/**
+ * Class to manage Person data request command
+ */
 public class PersonHandler implements HttpHandler {
+    /**
+     * Handle Person command, interpret user input and use service to return data to user
+     * @param exchange the exchange containing the request from the
+     *      client and used to send the response
+     */
     @Override
-    public void handle(HttpExchange exchange) throws IOException {
+    public void handle(HttpExchange exchange) {
         try {
             String fullURI = exchange.getRequestURI().toString();
             OutputStream respBody = exchange.getResponseBody();
@@ -27,7 +35,7 @@ public class PersonHandler implements HttpHandler {
             PersonService personService = new PersonService(authToken);
             ResultMessage resultMessage = null;
 
-            // TODO: HANDLE PERSON
+            // HANDLE PERSON
             // If the uri is just /person, get all user's family
             // Do this by getting the user's personID based on the given authtoken
             // Then, find all people with the associated username
@@ -57,6 +65,12 @@ public class PersonHandler implements HttpHandler {
         }
     }
 
+    /**
+     * Outputs messages as server response
+     * @param str input string
+     * @param os OutputStream
+     * @throws IOException Thrown if error with write or flush
+     */
     private void writeString(String str, OutputStream os) throws IOException {
         OutputStreamWriter sw = new OutputStreamWriter(os);
         sw.write(str);

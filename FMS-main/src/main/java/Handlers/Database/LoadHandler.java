@@ -14,9 +14,17 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Class to handle Load command
+ */
 public class LoadHandler implements HttpHandler {
+    /**
+     * Main method to handle Load command, interprets user input data and passes on to load services
+     * @param exchange the exchange containing the request from the
+     *      client and used to send the response
+     */
     @Override
-    public void handle(HttpExchange exchange) throws IOException {
+    public void handle(HttpExchange exchange) {
         try {
             if (exchange.getRequestMethod().equalsIgnoreCase("post")) {
                 System.out.println("Loading Database");
@@ -51,11 +59,25 @@ public class LoadHandler implements HttpHandler {
         }
     }
 
+    /**
+     * Outputs messages as server response
+     * @param str input string
+     * @param os OutputStream
+     * @throws IOException Thrown if error with write or flush
+     */
+
     private void writeString(String str, OutputStream os) throws IOException {
         OutputStreamWriter sw = new OutputStreamWriter(os);
         sw.write(str.replaceAll("\n", "").replaceAll("\t", ""));
         sw.flush();
     }
+
+    /**
+     * Read the input message from the user
+     * @param is InputStream
+     * @return String that can be used by outer funciton
+     * @throws IOException If there is an error with input
+     */
     private String readString(InputStream is) throws IOException {
         StringBuilder sb = new StringBuilder();
         InputStreamReader sr = new InputStreamReader(is);

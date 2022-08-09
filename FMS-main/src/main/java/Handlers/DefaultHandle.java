@@ -10,14 +10,20 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.nio.file.Files;
 
+/**
+ * Default Server connection handler
+ */
 public class DefaultHandle implements HttpHandler {
 
+    /**
+     * Handles no-command and gives affirmative message about server connection
+     * @param givenExchange the exchange containing the request from the
+     *      client and used to send the response
+     * @throws IOException If there is an error with input
+     */
     @Override
     public void handle(HttpExchange givenExchange) throws IOException {
-        boolean success = false;
-
         try {
-
             if (givenExchange.getRequestMethod().equalsIgnoreCase("get")) {
                 givenExchange.getRequestHeaders();
                 String urlPathString = givenExchange.getRequestURI().toString();
@@ -44,14 +50,9 @@ public class DefaultHandle implements HttpHandler {
             System.out.println("Loading Web...");
             String respData = "{ \"Message\": \"Connected to Server\" }";
 
-            // TODO: HANDLE EVENT
-
             givenExchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
-
             OutputStream respBody = givenExchange.getResponseBody();
-
             writeString(respData, respBody);
-
             respBody.close();
 
         } catch(IOException error) {
@@ -61,6 +62,12 @@ public class DefaultHandle implements HttpHandler {
         }
     }
 
+    /**
+     * Outputs messages as server response
+     * @param str input string
+     * @param os OutputStream
+     * @throws IOException Thrown if error with write or flush
+     */
     private void writeString(String str, OutputStream os) throws IOException {
         OutputStreamWriter sw = new OutputStreamWriter(os);
         sw.write(str);

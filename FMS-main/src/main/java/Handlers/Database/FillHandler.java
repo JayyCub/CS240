@@ -16,10 +16,17 @@ import java.sql.ResultSet;
 
 import static java.lang.Integer.parseInt;
 
+/**
+ * Class that handles Fill command
+ */
 public class FillHandler implements HttpHandler {
-
+    /**
+     * Method to handle Fill command, passes to service and returns message to user
+     * @param exchange the exchange containing the request from the
+     *      client and used to send the response
+     */
     @Override
-    public void handle(HttpExchange exchange) throws IOException {
+    public void handle(HttpExchange exchange) {
         try {
             String fullURI = exchange.getRequestURI().toString();
             OutputStream respBody = exchange.getResponseBody();
@@ -77,10 +84,17 @@ public class FillHandler implements HttpHandler {
         }
     }
 
-        private void writeString(String str, OutputStream os) throws IOException {
-            OutputStreamWriter sw = new OutputStreamWriter(os);
-            sw.write(str);
-            sw.flush();
-        }
+    /**
+     * Outputs messages as server response
+     * @param str input string
+     * @param os  OutputStream
+     * @throws IOException Thrown if error with write or flush
+     */
 
+    private void writeString(String str, OutputStream os) throws IOException {
+        OutputStreamWriter sw = new OutputStreamWriter(os);
+        sw.write(str);
+        sw.flush();
     }
+
+}

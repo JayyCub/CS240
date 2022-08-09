@@ -6,7 +6,14 @@ import ReqRes.ResultMessage;
 
 import java.sql.SQLException;
 
+/**
+ * Class to manage the clearing of all DB tables
+ */
 public class ClearService {
+    /**
+     * Constructor method that initiates clearing through ClearDAO
+     * @return ResultMessage
+     */
     public ResultMessage clear() {
         DatabaseUtil DB = new DatabaseUtil();
         DB.open();

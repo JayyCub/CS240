@@ -8,8 +8,16 @@ import ReqRes.ResultMessage;
 import java.sql.Connection;
 import java.sql.SQLException;
 
+/**
+ * Class to manage the Loading of new data into the DB
+ */
 public class LoadService {
 
+    /**
+     * Function that creates Database object, inserts all the given objects into the DB, and returns message to user
+     * @param loadRequest LoadRequest object, contains list of Persons, Users, and Events to insert
+     * @return ResultMessage with success message and numbers of each inserted type, or error.
+     */
     public ResultMessage loadDataService(LoadRequest loadRequest){
         ClearService clearDB = new ClearService();
         clearDB.clear();

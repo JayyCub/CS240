@@ -11,20 +11,31 @@ import java.sql.Connection;
 import java.util.*;
 import java.util.logging.Level;
 
+/**
+ * Class to help with creating families to fill into the DB
+ */
 public class FillFamily {
+    /** Person object, primary person */
     private Person child;
+    /** Person object, paternal figure */
     private Person father;
+    /** Person object, maternal figure */
     private Person mother;
+    /** List of Events to be used */
     private ArrayList<Event> events = new ArrayList<>();
+    /** Connection to DB */
     private Connection conn;
 
+    /**
+     * Constructor to establish child Person and connection to DB
+     * @param child Person object
+     * @param conn Connection to DB
+     */
     FillFamily(Person child, Connection conn){
         this.conn = conn;
         this.child = child;
         Random randomNum = new Random();
         Gson gson = new Gson();
-
-
 
         String[] maleNames = null;
         String[] femaleNames = null;
@@ -67,36 +78,11 @@ public class FillFamily {
         generateEvents();
     }
 
+    /**
+     * Create events based on JSON list of locations and age requirements
+     */
     private void generateEvents() {
         Random rand = new Random();
-/*
-            final int CURRENT_YEAR = 2020;
-            final int DEFAULT_AGE = 22;
-            final int DEFAULT_MARRIAGE_AGE = 25;
-            final int YEARS_MARRIED_BEFORE_CHILDREN = 4;
-            final int DEFAULT_DEATH_AGE = 85;
-
-
-        EventDAO eDao = new EventDAO(this.conn);
-        Gson gson = new Gson();
-        Location[] locations = null;
-
-        // See if the child already has a birth year assigned.
-        // Only the very first person (the user) should not have one at this point.
-
-        Event birthEvent = null;
-
-        birthEvent = eDao.find(child.getPersonID(), "Birth");
-
-        int childBirthYear = (birthEvent == null) ? CURRENT_YEAR - DEFAULT_AGE : birthEvent.getYear();
-
-        // Assume data based on child birth year
-        int parentMarriageYear = childBirthYear - 1;
-        int parentBirthYear = parentMarriageYear - 22;
-        int parentDeathYear = parentBirthYear + 90;
-        */
-
-
 
         final int CURRENT_YEAR = 2020;
         final int DEFAULT_AGE = 22;
@@ -114,7 +100,7 @@ public class FillFamily {
 
         int childBirthYear = (birthEvent == null) ? CURRENT_YEAR - DEFAULT_AGE : birthEvent.getYear();
 
-        // Assume data based on child birth year
+        // Assume data based on child's birth year
         int parentMarriageYear = childBirthYear - YEARS_MARRIED_BEFORE_CHILDREN;
         int parentBirthYear = parentMarriageYear - DEFAULT_MARRIAGE_AGE;
         int parentDeathYear = parentBirthYear + DEFAULT_DEATH_AGE;
@@ -171,10 +157,7 @@ public class FillFamily {
                 mother.getAssociatedUsername(), mother.getPersonID(),
                 location.getLatitude(), location.getLongitude(), location.getCountry(), location.getCity(),
                 "Death", parentDeathYear));
-
-
     }
-
 
     public Person getChild() {
         return child;
@@ -191,5 +174,4 @@ public class FillFamily {
     public ArrayList<Event> getEvents() {
         return events;
     }
-
 }

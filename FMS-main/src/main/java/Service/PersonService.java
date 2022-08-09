@@ -11,15 +11,29 @@ import java.sql.Connection;
 import java.util.List;
 import java.util.Objects;
 
+/**
+ * Class that services the request for a specific user or family of users
+ */
 public class PersonService {
+    /** String with the authToken ID used for verification */
     private String authToken;
 
+    /**
+     * Constructor to sets the value of the authToken ID string
+     * @param authToken
+     */
     public PersonService(String authToken){
         this.authToken = authToken;
     }
 
     // Do this by getting the user's personID based on the given authtoken
     // Then, find all people with the associated username
+
+    /**
+     * This method uses the Authtoken's associated username to find all people in the database with the same
+     * associated username
+     * @return Message, success: list of all people, or failure message
+     */
     public ResultMessage findFamily(){
         System.out.println("Finding people associated to authToken " + authToken);
         DatabaseUtil DB = new DatabaseUtil();
@@ -49,6 +63,11 @@ public class PersonService {
                 null, null, null, null, null, persons, null, true);
     }
 
+    /**
+     * Using the authToken's associated username and the given personID, this message finds the user's relative
+     * @param personID String personID used to search DB
+     * @return Message with found Person's data or an error message
+     */
     // Find person in database with given personID, only if they are associated to authToken person
     public ResultMessage findPerson(String personID){
         System.out.println("Finding person with ID " + personID + ", authToken " + authToken);

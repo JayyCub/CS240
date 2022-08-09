@@ -12,9 +12,17 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 
+/**
+ * Class to handle the Event request command
+ */
 public class EventHandler implements HttpHandler {
+    /**
+     * Main function to handle the Event command, interprets AuthToken and event ID from user
+     * @param exchange the exchange containing the request from the
+     *      client and used to send the response
+     */
     @Override
-    public void handle(HttpExchange exchange) throws IOException {
+    public void handle(HttpExchange exchange) {
         try {
             String fullURI = exchange.getRequestURI().toString();
             OutputStream respBody = exchange.getResponseBody();
@@ -53,6 +61,12 @@ public class EventHandler implements HttpHandler {
         }
     }
 
+    /**
+     * Outputs messages as server response
+     * @param str input String
+     * @param os OutputStream
+     * @throws IOException Thrown if error with write or flush
+     */
     private void writeString(String str, OutputStream os) throws IOException {
         OutputStreamWriter sw = new OutputStreamWriter(os);
         sw.write(str);

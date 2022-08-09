@@ -12,7 +12,15 @@ import java.io.*;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
 
+/**
+ * Class to handle Register commmand
+ */
 public class RegisterHandler implements HttpHandler {
+    /**
+     * Handles registration, reads User object and passes data to service, gives user validation message
+     * @param exchange the exchange containing the request from the
+     *      client and used to send the response
+     */
     @Override
     public void handle(HttpExchange exchange) {
         try {
@@ -43,11 +51,24 @@ public class RegisterHandler implements HttpHandler {
         }
     }
 
+    /**
+     * Outputs messages as server response
+     * @param str input string
+     * @param os OutputStream
+     * @throws IOException Thrown if error with write or flush
+     */
     private void writeString(String str, OutputStream os) throws IOException {
         OutputStreamWriter sw = new OutputStreamWriter(os);
         sw.write(str.replaceAll("\n", "").replaceAll("\t", ""));
         sw.flush();
     }
+
+    /**
+     * Reads input from user and allows server to use User object data
+     * @param is InputStream
+     * @return String, data from user input
+     * @throws IOException If there is an error with the input
+     */
     private String readString(InputStream is) throws IOException {
         StringBuilder sb = new StringBuilder();
         InputStreamReader sr = new InputStreamReader(is);

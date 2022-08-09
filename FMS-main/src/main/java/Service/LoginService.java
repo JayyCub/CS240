@@ -12,15 +12,28 @@ import java.sql.SQLException;
 import java.util.Objects;
 import java.util.UUID;
 
+/**
+ * Class to log a user in
+ */
 public class LoginService {
+    /** User object */
     private User user;
 
+    /**
+     * This method sets the value for the User variable and creates the LoginService
+     * @param user User object
+     */
     public LoginService(User user){ this.user = user; }
 
     // If account exists, retrieve it
     // Else, error message
     // Create authToken
     // Return authToken
+
+    /**
+     * Looks for the username's account in database, if it exists, check if the password matches, if so, return Token
+     * @return Message with validation state of log in attempt
+     */
     public ResultMessage login(){
         DatabaseUtil DB = new DatabaseUtil();
         Connection conn = DB.open();

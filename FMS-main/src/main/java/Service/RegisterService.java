@@ -11,9 +11,17 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.UUID;
 
+/**
+ * This class manages registration
+ */
 public class RegisterService {
+    /** User object */
     private final User user;
 
+    /**
+     * Constructor that sets the value of the RegisterService User object to register
+     * @param user User object
+     */
     public RegisterService(User user) {
         this.user = user;
     }
@@ -24,6 +32,10 @@ public class RegisterService {
     // Log the user in
     // Returns an authtoken
 
+    /**
+     * This method checks if the username is already in use, if not, it inserts a new User object into the DB
+     * @return Message with validation and AuthToken if successful, else, it returns an error message
+     */
     public ResultMessage register() {
         DatabaseUtil DB = new DatabaseUtil();
         Connection conn = DB.open();
