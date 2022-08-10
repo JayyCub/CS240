@@ -41,7 +41,7 @@ public class UserDAO {
             statement.executeUpdate();
         } catch (SQLException e){
             System.out.println("Error with UserDAO SQL Insertion");
-            System.out.println(e);
+            //System.out.println(e);
             return false;
         }
         return true;
@@ -96,8 +96,10 @@ public class UserDAO {
             ResultSet resultSet = statement.executeQuery();
             return resultSet.next();
         } catch (SQLException sqlException){
-            System.out.println("Error: UserDAO: checkIfAccountExists(): Error checking for account");
-            System.out.println(sqlException);
+            //System.out.println("Error: UserDAO: checkIfAccountExists(): Error checking for account");
+            //System.out.println(sqlException);
+
+            // ACCOUNT NOT FOUND
             return false;
         }
     }

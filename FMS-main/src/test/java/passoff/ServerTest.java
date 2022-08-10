@@ -991,7 +991,6 @@ public class ServerTest {
             //Checks to see if you filled clearResult with a message String
             assertNotEquals(EMPTY_STRING, clearResult.getMessage(), "Clear message was empty string");
             //Checks to be sure the clearResult message contains the words "clear succeeded"
-            System.out.println(clearResult.getMessage());
             assertTrue(clearResult.getMessage().toLowerCase().contains("clear succeeded"), "Clear message did not contain the APIs success message");
             //We are calling the login api for a user named sheila
             LoginResult loginResult = proxy.login(host, port, loginRequest);

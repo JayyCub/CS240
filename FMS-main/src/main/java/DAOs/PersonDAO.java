@@ -64,8 +64,10 @@ public class PersonDAO {
                     resultSet.getString(5), resultSet.getString(6),
                     resultSet.getString(7), resultSet.getString(8));
         } catch (SQLException sqlException){
-            System.out.println("Error: UserDAO: retrieveAccount(): Error retrieving account");
-            System.out.println(sqlException);
+            // System.out.println("Error: PersonDAO: retrieveAccount(): Error retrieving account");
+            // System.out.println(sqlException);
+
+            // ACCOUNT NOT FOUND
             return new Person(null, null, null, null, null, null,
                     null, null);
         }
@@ -113,4 +115,25 @@ public class PersonDAO {
             System.out.println("Error clearing People from DB");
         }
     }
+
+    /**
+     * Check if the DB contains a Person with the given username
+     * @param personID String, personID to search for
+     * @return Boolean, if the account exists
+     */
+    public boolean checkIfPersonExists(String personID) {
+        String sqlString = "SELECT * FROM People WHERE personID=?";
+        try (PreparedStatement statement = conn.prepareStatement(sqlString)) {
+            statement.setString(1, personID);
+            ResultSet resultSet = statement.executeQuery();
+            return resultSet.next();
+        } catch (SQLException sqlException){
+            //System.out.println("Error: PersonDAO: checkIfAccountExists(): Error checking for account");
+            //System.out.println(sqlException);
+
+            // ACCOUNT NOT FOUND
+            return false;
+        }
+    }
+
 }
