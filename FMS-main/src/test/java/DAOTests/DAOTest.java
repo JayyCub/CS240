@@ -256,10 +256,8 @@ public class DAOTest {
         userDAO.insertUser(jacobUser);
         databaseUtil.commit();
 
-
         // Check if the user now exists in the database
         boolean insertionCheck = userDAO.checkIfAccountExists(jacobUser.getUsername());
-        System.out.println(insertionCheck);
         Assertions.assertTrue(insertionCheck, "User was not inserted into the database");
 
         // Check if we can retrieve the account from the database
