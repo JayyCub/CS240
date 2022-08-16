@@ -4,21 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa908e5d-6f57-4b71-9192-6bef83a75710" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/EvilHangman.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/dictionary.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/empty.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/gameWords.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/small.txt" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hangman/EmptyDictionaryException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hangman/EvilHangman.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hangman/EvilHangmanGame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hangman/GuessAlreadyMadeException.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/hangman/IEvilHangmanGame.java" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/passoff/HangmanTest.java" afterDir="false" />
+    <list default="true" id="fa908e5d-6f57-4b71-9192-6bef83a75710" name="Changes" comment="Evil Hangman set up">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hangman/EvilHangman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/hangman/EvilHangman.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/hangman/EvilHangmanGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/hangman/EvilHangmanGame.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -52,7 +41,7 @@
     "RunOnceActivity.OpenProjectViewOnStart": "true",
     "RunOnceActivity.ShowReadmeOnStart": "true",
     "SHARE_PROJECT_CONFIGURATION_FILES": "true",
-    "last_opened_file_path": "C:/Users/jat0220/Documents/240/EvilHangman/jars/opentest4j-1.1.1.jar",
+    "last_opened_file_path": "C:/Users/jat0220/Downloads/EvilHangman_Exam/EvilHangman_Exam",
     "project.structure.last.edited": "Modules",
     "project.structure.proportion": "0.0",
     "project.structure.side.proportion": "0.0"
@@ -65,7 +54,31 @@
       <recent name="C:\Users\jat0220\Documents\240\EvilHangman" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Application.Test 1: dictionary.txt 6 10">
+    <configuration name="Test 1: dictionary.txt 6 10" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="hangman.EvilHangman" />
+      <module name="EvilHangman" />
+      <option name="PROGRAM_PARAMETERS" value="dictionary.txt 6 10" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test 2: dictionary.txt 6 26" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="hangman.EvilHangman" />
+      <module name="EvilHangman" />
+      <option name="PROGRAM_PARAMETERS" value="dictionary.txt 6 26" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="Test 3: dictionary.txt 5 12" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="hangman.EvilHangman" />
+      <module name="EvilHangman" />
+      <option name="PROGRAM_PARAMETERS" value="dictionary.txt 5 12" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="HangmanTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="EvilHangman" />
       <extension name="coverage">
@@ -76,11 +89,18 @@
       </extension>
       <option name="PACKAGE_NAME" value="passoff" />
       <option name="MAIN_CLASS_NAME" value="passoff.HangmanTest" />
+      <option name="METHOD_NAME" value="" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <list>
+      <item itemvalue="Application.Test 1: dictionary.txt 6 10" />
+      <item itemvalue="Application.Test 3: dictionary.txt 5 12" />
+      <item itemvalue="Application.Test 2: dictionary.txt 6 26" />
+      <item itemvalue="JUnit.HangmanTest" />
+    </list>
     <recent_temporary>
       <list>
         <item itemvalue="JUnit.HangmanTest" />
@@ -96,6 +116,14 @@
       <option name="presentableId" value="Default" />
       <updated>1660322432599</updated>
     </task>
+    <task id="LOCAL-00001" summary="Evil Hangman set up">
+      <created>1660325398927</created>
+      <option name="number" value="00001" />
+      <option name="presentableId" value="LOCAL-00001" />
+      <option name="project" value="LOCAL" />
+      <updated>1660325398927</updated>
+    </task>
+    <option name="localTasksCounter" value="2" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -111,5 +139,7 @@
   </component>
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
+    <MESSAGE value="Evil Hangman set up" />
+    <option name="LAST_COMMIT_MESSAGE" value="Evil Hangman set up" />
   </component>
 </project>
