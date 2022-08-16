@@ -1,18 +1,26 @@
 package spell;
 
 public class Node implements INode {
+    Node[] nodes;
+    int count;
+
+    Node(){
+        nodes = new Node[26];
+        count = 0;
+    }
+
     @Override
     public int getValue() {
-        return 0;
+        return count;
     }
 
     @Override
     public void incrementValue() {
-
+        count++;
     }
 
     @Override
-    public INode[] getChildren() {
-        return new INode[0];
+    public Node[] getChildren() {
+        return nodes;
     }
 }

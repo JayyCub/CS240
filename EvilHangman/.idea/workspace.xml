@@ -4,10 +4,10 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="fa908e5d-6f57-4b71-9192-6bef83a75710" name="Changes" comment="Evil Hangman set up">
+    <list default="true" id="fa908e5d-6f57-4b71-9192-6bef83a75710" name="Changes" comment="Evil Hangman Passes Tests">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hangman/EvilHangman.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/hangman/EvilHangman.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/hangman/EvilHangmanGame.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/hangman/EvilHangmanGame.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EvilHangman/hangman/EvilHangman.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EvilHangman/hangman/EvilHangman.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/EvilHangman/hangman/EvilHangmanGame.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/EvilHangman/hangman/EvilHangmanGame.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -123,7 +123,14 @@
       <option name="project" value="LOCAL" />
       <updated>1660325398927</updated>
     </task>
-    <option name="localTasksCounter" value="2" />
+    <task id="LOCAL-00002" summary="Evil Hangman Passes Tests">
+      <created>1660684504066</created>
+      <option name="number" value="00002" />
+      <option name="presentableId" value="LOCAL-00002" />
+      <option name="project" value="LOCAL" />
+      <updated>1660684504066</updated>
+    </task>
+    <option name="localTasksCounter" value="3" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -140,6 +147,7 @@
   <component name="VcsManagerConfiguration">
     <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
     <MESSAGE value="Evil Hangman set up" />
-    <option name="LAST_COMMIT_MESSAGE" value="Evil Hangman set up" />
+    <MESSAGE value="Evil Hangman Passes Tests" />
+    <option name="LAST_COMMIT_MESSAGE" value="Evil Hangman Passes Tests" />
   </component>
 </project>
