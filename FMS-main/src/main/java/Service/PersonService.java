@@ -18,6 +18,9 @@ public class PersonService {
     /** String with the authToken ID used for verification */
     private String authToken;
 
+    /** String with the personID to be used for DB lookup */
+    private String personID;
+
     /**
      * Constructor to sets the value of the authToken ID string
      * @param authToken

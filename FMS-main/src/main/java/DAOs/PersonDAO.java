@@ -1,7 +1,6 @@
 package DAOs;
 
 import DAO_Models.Person;
-import com.google.gson.Gson;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -100,6 +99,14 @@ public class PersonDAO {
             System.out.println(sqlException);
             return null;
         }
+    }
+
+    /**
+     * This function finds and removes all persons associated to a given user from the DB
+     * @param username Given username to check
+     */
+    public void removeAssociatedPeople(String username){
+        // Created for JavaDocs, not needed in final product
     }
 
     /**

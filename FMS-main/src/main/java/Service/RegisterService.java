@@ -8,7 +8,6 @@ import DAOs.UserDAO;
 import ReqRes.ResultMessage;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.UUID;
 
 /**
@@ -73,14 +72,14 @@ public class RegisterService {
         // Create auth token for user and "log them in"
         // Generates random UUID, adds it to Authtoken DB table
 
-        AuthToken authToken = new AuthToken(UUID.randomUUID().toString().substring(0, 10), user.getUsername(), user.getPersonID());
+        AuthToken authToken = new AuthToken(UUID.randomUUID().toString().substring(0, 10), user.getUsername());
         AuthTokenDAO authTokenDAO = new AuthTokenDAO(conn);
         authTokenDAO.insertToken(authToken);
 
         DB.close(true);
         System.out.println("Created account for " + user.getUsername());
 
-        return new ResultMessage(authToken.getAuthToken(), authToken.getUsername(), authToken.getPersonID(),
+        return new ResultMessage(authToken.getAuthToken(), authToken.getUsername(), user.getPersonID(),
                 null, null, null, null, null, null,
                 null, null, null, null, null, null, null,
                 null, null, "Registered and logged in!", true);

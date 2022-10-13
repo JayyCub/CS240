@@ -2,11 +2,9 @@ package Service;
 
 import DAO_Models.AuthToken;
 import DAO_Models.Event;
-import DAO_Models.Person;
 import DAOs.AuthTokenDAO;
 import DAOs.DatabaseUtil;
 import DAOs.EventDAO;
-import DAOs.PersonDAO;
 import ReqRes.ResultMessage;
 
 import java.sql.Connection;
@@ -19,6 +17,9 @@ import java.util.Objects;
 public class EventService {
     /** String, authtoken used to access DB */
     private String authToken;
+
+    /** String with the eventID to be used for DB lookup */
+    private String eventID;
 
     /**
      * Constructor to set value of authToken

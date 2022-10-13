@@ -8,7 +8,6 @@ import DAOs.UserDAO;
 import ReqRes.ResultMessage;
 
 import java.sql.Connection;
-import java.sql.SQLException;
 import java.util.Objects;
 import java.util.UUID;
 
@@ -64,16 +63,16 @@ public class LoginService {
         AuthTokenDAO authTokenDAO = new AuthTokenDAO(conn);
         AuthToken authToken;
         if (!authTokenDAO.checkIfTokenExists(username)){
-            authToken = new AuthToken(UUID.randomUUID().toString().substring(0, 10), username, user.getPersonID());
+            authToken = new AuthToken(UUID.randomUUID().toString().substring(0, 10), username);
             authTokenDAO.insertToken(authToken);
         } else {
-            authToken = new AuthToken(UUID.randomUUID().toString().substring(0, 10), username, user.getPersonID());
+            authToken = new AuthToken(UUID.randomUUID().toString().substring(0, 10), username);
             authTokenDAO.updateToken(authToken);
         }
 
         DB.close(true);
 
-        return new ResultMessage(authToken.getAuthToken(), authToken.getUsername(), authToken.getPersonID(),
+        return new ResultMessage(authToken.getAuthToken(), authToken.getUsername(), user.getPersonID(),
                 null, null, null, null, null, null,
                 null, null, null, null, null, null, null,
                 null, null, "Logged in!", true);

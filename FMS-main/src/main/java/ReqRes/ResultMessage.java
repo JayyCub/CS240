@@ -1,7 +1,9 @@
 package ReqRes;
 
 /**
- * Class to structure the response messages given to the program user
+ * Class to structure ALL response messages given to the program user. This class allows for the server to fill in
+ * whatever is needed for a specific response, and only have that info returned.
+ * Instead of having each server function have its own response class, this one can be used by all functions.
  */
 public class ResultMessage {
     /**

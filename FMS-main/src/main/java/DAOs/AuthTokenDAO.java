@@ -1,7 +1,6 @@
 package DAOs;
 
 import DAO_Models.AuthToken;
-import DAO_Models.User;
 
 import java.sql.*;
 
@@ -23,12 +22,11 @@ public class AuthTokenDAO {
      * @param authToken The given authToken object
      */
     public void insertToken(AuthToken authToken){
-        String sqlInsertion = "INSERT INTO AuthTable (auth_Token, userName, personID) VALUES(?,?,?)";
+        String sqlInsertion = "INSERT INTO AuthTable (auth_Token, userName) VALUES(?,?)";
 
         try (PreparedStatement statement = conn.prepareStatement(sqlInsertion)) {
             statement.setString(1, authToken.getAuthToken());
             statement.setString(2, authToken.getUsername());
-            statement.setString(3, authToken.getPersonID());
 
             statement.executeUpdate();
         } catch (SQLException e){
@@ -85,12 +83,11 @@ public class AuthTokenDAO {
             ResultSet resultSet = statement.executeQuery();
 
             return new AuthToken(resultSet.getString(1),
-                    resultSet.getString(2),
-                    resultSet.getString(3));
+                    resultSet.getString(2));
         } catch (SQLException sqlException){
             System.out.println("Error: UserDAO: retrieveAccount(): Error retrieving account");
             System.out.println(sqlException);
-            return new AuthToken(null, null, null);
+            return new AuthToken(null, null);
         }
     }
 
@@ -124,12 +121,11 @@ public class AuthTokenDAO {
             ResultSet resultSet = statement.executeQuery();
 
             return new AuthToken(resultSet.getString(1),
-                    resultSet.getString(2),
-                    resultSet.getString(3));
+                    resultSet.getString(2));
         } catch (SQLException sqlException){
             System.out.println("Error: UserDAO: retrieveAccount(): Error retrieving account");
             System.out.println(sqlException);
-            return new AuthToken(null, null, null);
+            return new AuthToken(null, null);
         }
     }
 

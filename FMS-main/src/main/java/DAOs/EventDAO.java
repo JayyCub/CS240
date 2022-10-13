@@ -1,7 +1,6 @@
 package DAOs;
 
 import DAO_Models.Event;
-import DAO_Models.Person;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -73,6 +72,14 @@ public class EventDAO {
             System.out.println(sqlException);
             return null;
         }
+    }
+
+    /**
+     * This function removes all the events in the DB associated to a given username
+     * @param username Username to remove events
+     */
+    public void removeAssociatedEvents(String username){
+        // Created for JavaDocs, not needed in final project
     }
 
     /**
