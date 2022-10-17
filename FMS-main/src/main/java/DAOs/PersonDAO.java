@@ -63,7 +63,7 @@ public class PersonDAO {
                     resultSet.getString(5), resultSet.getString(6),
                     resultSet.getString(7), resultSet.getString(8));
         } catch (SQLException sqlException){
-            // System.out.println("Error: PersonDAO: retrieveAccount(): Error retrieving account");
+            System.out.println("Error: PersonDAO: retrieveAccount(): Error retrieving account");
             // System.out.println(sqlException);
 
             // ACCOUNT NOT FOUND
@@ -135,7 +135,7 @@ public class PersonDAO {
             ResultSet resultSet = statement.executeQuery();
             return resultSet.next();
         } catch (SQLException sqlException){
-            //System.out.println("Error: PersonDAO: checkIfAccountExists(): Error checking for account");
+            System.out.println("Error: PersonDAO: checkIfAccountExists(): Error checking for account");
             //System.out.println(sqlException);
 
             // ACCOUNT NOT FOUND

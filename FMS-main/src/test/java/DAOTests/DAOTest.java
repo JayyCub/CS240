@@ -12,7 +12,10 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 import com.google.gson.stream.JsonReader;
 import logs.InitLogs;
-import org.junit.jupiter.api.*;
+import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
+import org.junit.jupiter.api.Test;
 import passoffrequest.LoadRequest;
 
 import java.io.FileNotFoundException;
@@ -20,16 +23,13 @@ import java.io.FileReader;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
-import java.util.Scanner;
 import java.util.logging.Logger;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.fail;
 
 public class DAOTest {
-    private static String host = "localhost";
-    private static String port = "8080";
-    private static boolean displayCurrentTest = true;
+    private static final String host = "localhost";
+    private static final String port = "8080";
     private Proxy proxy;
     private DatabaseUtil databaseUtil = new DatabaseUtil();
     private static final Gson GSON = new GsonBuilder().setPrettyPrinting().create();
@@ -82,6 +82,7 @@ public class DAOTest {
                 "Boolean: is table populated?");
 
         databaseUtil.close(true);
+        System.out.println("Test Completed");
     }
 
     /**
@@ -109,6 +110,7 @@ public class DAOTest {
         databaseUtil.commit();
         Assertions.assertFalse(foundAccount, "Users table not cleared by UserDAO clearing function.\n" +
                 "Boolean: is table populated?");
+        System.out.println("Test Completed");
     }
 
     /**
@@ -133,6 +135,7 @@ public class DAOTest {
         foundAccount = userDAO.checkIfAccountExists(jacobUser.getUsername());
         databaseUtil.commit();
         Assertions.assertTrue(foundAccount, "Could not find account in database");
+        System.out.println("Test Completed");
     }
 
     /**
@@ -153,6 +156,7 @@ public class DAOTest {
         boolean second = userDAO.insertUser(jacobUser);
         databaseUtil.commit();
         Assertions.assertTrue(second, "EXPECTED FAILURE: Did not insert user on second attempt");
+        System.out.println("Test Completed");
     }
 
     /**
@@ -177,6 +181,7 @@ public class DAOTest {
         boolean checkVal2 = personDAO.checkIfPersonExists(jacobPerson.getPersonID());
         databaseUtil.commit();
         Assertions.assertTrue(checkVal2, "Could not find account in database");
+        System.out.println("Test Completed");
     }
 
     /**
@@ -197,6 +202,7 @@ public class DAOTest {
         boolean second = personDAO.insertPerson(jacobPerson);
         databaseUtil.commit();
         Assertions.assertTrue(second, "EXPECTED FAILURE: Did not insert person on second attempt");
+        System.out.println("Test Completed");
     }
 
     /**
@@ -219,6 +225,7 @@ public class DAOTest {
         Person resultPerson = personDAO.retrieveAccount(jacobPerson.getPersonID());
         Assertions.assertNotNull(resultPerson.getFirstName(), "Could not find person in database");
         databaseUtil.commit();
+        System.out.println("Test Completed");
     }
 
     /**
@@ -241,6 +248,7 @@ public class DAOTest {
         Person nullPerson = personDAO.retrieveAccount(jacobPerson.getPersonID());
         databaseUtil.commit();
         Assertions.assertNotNull(nullPerson.getFirstName(), "EXPECTED FAILURE: Did not retrieve person from database");
+        System.out.println("Test Completed");
     }
 
     /**
@@ -263,6 +271,7 @@ public class DAOTest {
         // Check if we can retrieve the account from the database
         User resultUser = userDAO.retrieveAccount(jacobUser.getUsername());
         Assertions.assertNotNull(resultUser.getFirstName(), "Could not find User in database");
+        System.out.println("Test Completed");
     }
 
     /**
@@ -285,6 +294,7 @@ public class DAOTest {
         User nullUser = userDAO.retrieveAccount(jacobUser.getPersonID());
         databaseUtil.commit();
         Assertions.assertNotNull(nullUser.getFirstName(), "EXPECTED FAILURE: Did not retrieve User from database");
+        System.out.println("Test Completed");
     }
 
     private void load() {

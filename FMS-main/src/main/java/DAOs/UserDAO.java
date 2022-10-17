@@ -3,7 +3,6 @@ package DAOs;
 import DAO_Models.User;
 
 import java.sql.*;
-import java.util.Objects;
 
 /**
  * UserDAO object, User database access
@@ -96,7 +95,7 @@ public class UserDAO {
             ResultSet resultSet = statement.executeQuery();
             return resultSet.next();
         } catch (SQLException sqlException){
-            //System.out.println("Error: UserDAO: checkIfAccountExists(): Error checking for account");
+            System.out.println("Error: UserDAO: checkIfAccountExists(): Error checking for account");
             //System.out.println(sqlException);
 
             // ACCOUNT NOT FOUND
