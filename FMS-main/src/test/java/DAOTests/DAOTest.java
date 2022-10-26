@@ -155,7 +155,7 @@ public class DAOTest {
         // Insert the same user a second time. Row uniqueness in DB is expected to not allow this and give error.
         boolean second = userDAO.insertUser(jacobUser);
         databaseUtil.commit();
-        Assertions.assertTrue(second, "EXPECTED FAILURE: Did not insert user on second attempt");
+        Assertions.assertFalse(second, "EXPECTED FAILURE: Did not insert user on second attempt");
         System.out.println("Test Completed");
     }
 
@@ -201,7 +201,7 @@ public class DAOTest {
         // Insert the same person a second time. Row uniqueness in DB is expected to not allow this and give error.
         boolean second = personDAO.insertPerson(jacobPerson);
         databaseUtil.commit();
-        Assertions.assertTrue(second, "EXPECTED FAILURE: Did not insert person on second attempt");
+        Assertions.assertFalse(second, "EXPECTED FAILURE: Did not insert person on second attempt");
         System.out.println("Test Completed");
     }
 
@@ -247,7 +247,7 @@ public class DAOTest {
         // Retrieve person that is not there
         Person nullPerson = personDAO.retrieveAccount(jacobPerson.getPersonID());
         databaseUtil.commit();
-        Assertions.assertNotNull(nullPerson.getFirstName(), "EXPECTED FAILURE: Did not retrieve person from database");
+        Assertions.assertNull(nullPerson.getFirstName(), "EXPECTED FAILURE: Did not retrieve person from database");
         System.out.println("Test Completed");
     }
 
@@ -293,7 +293,7 @@ public class DAOTest {
         // Retrieve User that is not there
         User nullUser = userDAO.retrieveAccount(jacobUser.getPersonID());
         databaseUtil.commit();
-        Assertions.assertNotNull(nullUser.getFirstName(), "EXPECTED FAILURE: Did not retrieve User from database");
+        Assertions.assertNull(nullUser.getFirstName(), "EXPECTED FAILURE: Did not retrieve User from database");
         System.out.println("Test Completed");
     }
 
