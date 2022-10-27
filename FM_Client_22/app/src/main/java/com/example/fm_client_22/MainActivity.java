@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
@@ -29,6 +30,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.fragment_login);
 
+        StrictMode.ThreadPolicy policy = new StrictMode.ThreadPolicy.Builder().permitAll().build();
+        StrictMode.setThreadPolicy(policy);
+
         ConstraintLayout layout = findViewById(R.id.login_page_layout);
         host = findViewById(R.id.inputHost);
         port = findViewById(R.id.inputPort);
@@ -43,7 +47,6 @@ public class MainActivity extends AppCompatActivity {
         loginButton = findViewById(R.id.login);
         registerButton.setEnabled(false);
         loginButton.setEnabled(false);
-
 
         layout.setOnClickListener(view -> allFieldsValid());
 
@@ -81,7 +84,12 @@ public class MainActivity extends AppCompatActivity {
                     username.getText().toString().equals("") || password.getText().toString().equals("")) {
                 temp = "Required field(s) empty.\nPlease try again.";
             }
-            Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_SHORT).show();
+            ServerProxy proxy = new ServerProxy();
+            String work = proxy.connect();
+
+            //Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_SHORT).show();
+            Toast.makeText(getApplicationContext(), work, Toast.LENGTH_SHORT).show();
+
         });
 
     }
