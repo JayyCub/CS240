@@ -10,9 +10,6 @@ import com.google.gson.*;
 import java.io.*;
 import java.lang.reflect.Type;
 import java.net.HttpURLConnection;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
 
 /**
  * Class to handle Load command

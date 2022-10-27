@@ -4,8 +4,6 @@ import DAOs.ClearDAO;
 import DAOs.DatabaseUtil;
 import ReqRes.ResultMessage;
 
-import java.sql.SQLException;
-
 /**
  * Class to manage the clearing of all DB tables
  */

@@ -1,7 +1,6 @@
 package Handlers.User;
 
 import DAO_Models.User;
-import ReqRes.LoadRequest;
 import ReqRes.ResultMessage;
 import Service.RegisterService;
 import com.google.gson.Gson;

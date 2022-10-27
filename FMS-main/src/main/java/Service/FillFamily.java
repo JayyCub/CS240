@@ -9,7 +9,6 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.sql.Connection;
 import java.util.*;
-import java.util.logging.Level;
 
 /**
  * Class to help with creating families to fill into the DB

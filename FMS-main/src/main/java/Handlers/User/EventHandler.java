@@ -2,7 +2,6 @@ package Handlers.User;
 
 import ReqRes.ResultMessage;
 import Service.EventService;
-import Service.PersonService;
 import com.google.gson.Gson;
 import com.sun.net.httpserver.HttpExchange;
 import com.sun.net.httpserver.HttpHandler;
