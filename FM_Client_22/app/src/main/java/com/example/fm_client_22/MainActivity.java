@@ -10,7 +10,11 @@ import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.Arrays;
+
+import ReqRes.LoginRequest;
+import ReqRes.RegisterRequest;
 
 public class MainActivity extends AppCompatActivity {
     private EditText host;
@@ -24,6 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton femaleGender;
     private Button registerButton;
     private Button loginButton;
+    public DataCache dataCache = DataCache.getInstance();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -63,33 +68,67 @@ public class MainActivity extends AppCompatActivity {
 
 
         registerButton.setOnClickListener(view -> {
-            String temp = "Please Select a Gender";
-            if (maleGender.isChecked()) temp = "Male";
-            else if (femaleGender.isChecked()) temp = "Female";
-            if (host.getText().toString().equals("") || port.getText().toString().equals("") ||
-                    username.getText().toString().equals("") || password.getText().toString().equals("") ||
-                    FName.getText().toString().equals("") || LName.getText().toString().equals("") ||
-                    email.getText().toString().equals("")) {
-                temp = "Required field(s) empty.\nPlease try again.";
+            char gender = 0;
+            if (maleGender.isChecked()) gender = 'm';
+            else if (femaleGender.isChecked()) gender = 'f';
+
+            ServerProxy proxy = new ServerProxy(host.getText().toString(), port.getText().toString(),
+                    this.dataCache);
+            RegisterRequest registerRequest = new RegisterRequest(username.getText().toString(),
+                    password.getText().toString(), email.getText().toString(),
+                    FName.getText().toString(), LName.getText().toString(), gender);
+
+            try {
+                boolean registered = proxy.register(registerRequest);
+                if (!registered) {
+                    if (dataCache.recentResult.getMessage().contains("Account already exists")) {
+                        Toast.makeText(getApplicationContext(), "Username already in use",
+                                Toast.LENGTH_SHORT).show();
+                    } else {
+                        Toast.makeText(getApplicationContext(), "Server connection error, could not register",
+                                Toast.LENGTH_SHORT).show();
+                    }
+                } else {
+                    // REGISTERED, PASS TO NEXT PAGE
+                    Toast.makeText(getApplicationContext(), "Registered! Welcome " +
+                            FName.getText().toString() + " " +
+                            LName.getText().toString() + "!", Toast.LENGTH_SHORT).show();
+                }
+            } catch (IOException e) {
+                Toast.makeText(getApplicationContext(), "Server connection error",
+                        Toast.LENGTH_SHORT).show();
             }
-
-
-            Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_SHORT).show();
         });
 
         loginButton.setOnClickListener(view -> {
-            String temp = "Logging in...";
+            ServerProxy proxy = new ServerProxy(host.getText().toString(), port.getText().toString(),
+                    dataCache);
+            LoginRequest loginRequest = new LoginRequest(username.getText().toString(),
+                    password.getText().toString());
 
-            if (host.getText().toString().equals("") || port.getText().toString().equals("") ||
-                    username.getText().toString().equals("") || password.getText().toString().equals("")) {
-                temp = "Required field(s) empty.\nPlease try again.";
+            try {
+                boolean result = proxy.login(loginRequest);
+                if (!result) {
+                    // DID NOT LOG IN
+                    String message = "Could not sign in";
+                    if (dataCache.recentResult.getMessage().contains("No account found for")) {
+                        message = "Account not found";
+                    } else if (dataCache.recentResult.getMessage().contains("Incorrect password")) {
+                        message = "Incorrect password";
+                    }
+                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+                } else {
+                    // LOGGED IN, PASS TO NEXT PAGE
+                    // GET USER'S FULL NAME
+                    Toast.makeText(getApplicationContext(), "Welcome " +
+                            dataCache.recentResult.getFirstName() + " " +
+                            dataCache.recentResult.getLastName() + "!", Toast.LENGTH_SHORT).show();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+                Toast.makeText(getApplicationContext(), "Server connection error",
+                        Toast.LENGTH_SHORT).show();
             }
-            ServerProxy proxy = new ServerProxy();
-            String work = proxy.connect();
-
-            //Toast.makeText(getApplicationContext(), temp, Toast.LENGTH_SHORT).show();
-            Toast.makeText(getApplicationContext(), work, Toast.LENGTH_SHORT).show();
-
         });
 
     }

@@ -7,8 +7,10 @@
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
         <module name="FamilyMapServerStudent" />
-        <module name="FMS-main" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="FamilyMapServerStudent" target="11" />
+    </bytecodeTargetLevel>
   </component>
 </project>

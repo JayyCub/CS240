@@ -87,4 +87,81 @@ public class ResultMessage {
     public boolean getSuccess(){
         return this.success;
     }
+
+    public String getAuthtoken() {
+        return authtoken;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public String getPersonID() {
+        return personID;
+    }
+
+    public String getAssociatedUsername() {
+        return associatedUsername;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public String getLastName() {
+        return lastName;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public String getFatherID() {
+        return fatherID;
+    }
+
+    public String getMotherID() {
+        return motherID;
+    }
+
+    public String getSpouseID() {
+        return spouseID;
+    }
+
+    public String getEventID() {
+        return eventID;
+    }
+
+    public Double getLatitude() {
+        return latitude;
+    }
+
+    public Double getLongitude() {
+        return longitude;
+    }
+
+    public String getCountry() {
+        return country;
+    }
+
+    public String getCity() {
+        return city;
+    }
+
+    public String getEventType() {
+        return eventType;
+    }
+
+    public Integer getYear() {
+        return year;
+    }
+
+    public Object[] getData() {
+        return data;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
 }
