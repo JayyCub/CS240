@@ -9,17 +9,8 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75548ee6-406c-492e-9ea2-39707f19f6f7" name="Changes" comment="Corrected erroneous newlines">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FMS_Passoff.log" beforeDir="false" afterPath="$PROJECT_DIR$/FMS_Passoff.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Family_Map.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/Family_Map.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/DAOs/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DAOs/UserDAO.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Handlers/Database/ClearHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Handlers/Database/ClearHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Handlers/Database/FillHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Handlers/Database/FillHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Handlers/Database/LoadHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Handlers/Database/LoadHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Handlers/User/EventHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Handlers/User/EventHandler.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/FillService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Service/FillService.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Service/LoginService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Service/LoginService.class" afterDir="false" />
+    <list default="true" id="75548ee6-406c-492e-9ea2-39707f19f6f7" name="Changes" comment="Tidrying up before zipping for submission">
+      <change beforePath="$PROJECT_DIR$/target/test-classes/passoff/ServerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/passoff/ServerTest.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -195,7 +186,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667256940042</updated>
     </task>
-    <option name="localTasksCounter" value="9" />
+    <task id="LOCAL-00009" summary="Tidrying up before zipping for submission">
+      <created>1667260046630</created>
+      <option name="number" value="00009" />
+      <option name="presentableId" value="LOCAL-00009" />
+      <option name="project" value="LOCAL" />
+      <updated>1667260046630</updated>
+    </task>
+    <option name="localTasksCounter" value="10" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -217,6 +215,7 @@
     <MESSAGE value="Unversioned Files Update" />
     <MESSAGE value="Files Update" />
     <MESSAGE value="Corrected erroneous newlines" />
-    <option name="LAST_COMMIT_MESSAGE" value="Corrected erroneous newlines" />
+    <MESSAGE value="Tidrying up before zipping for submission" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tidrying up before zipping for submission" />
   </component>
 </project>
