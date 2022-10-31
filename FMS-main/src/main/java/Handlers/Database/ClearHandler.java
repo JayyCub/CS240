@@ -30,13 +30,11 @@ public class ClearHandler implements HttpHandler{
             Gson outputGson = new Gson();
             String jsonResult = outputGson.toJson(resultMessage);
 
-
             exchange.sendResponseHeaders(HttpURLConnection.HTTP_OK, 0);
             OutputStream respBody = exchange.getResponseBody();
-
             writeString(jsonResult, respBody);
-
             respBody.close();
+
         } catch (IOException e) {
             System.out.println("There was an error.");
         }

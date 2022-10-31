@@ -44,8 +44,6 @@ public class LoadHandler implements HttpHandler {
 
                 OutputStream respBody = exchange.getResponseBody();
                 writeString(jsonResult, respBody);
-
-
                 respBody.close();
             } else {
                 exchange.sendResponseHeaders(HttpURLConnection.HTTP_BAD_REQUEST, 0);
@@ -62,7 +60,6 @@ public class LoadHandler implements HttpHandler {
      * @param os OutputStream
      * @throws IOException Thrown if error with write or flush
      */
-
     private void writeString(String str, OutputStream os) throws IOException {
         OutputStreamWriter sw = new OutputStreamWriter(os);
         sw.write(str.replaceAll("\n", "").replaceAll("\t", ""));

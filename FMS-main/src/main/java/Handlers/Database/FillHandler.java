@@ -31,7 +31,6 @@ public class FillHandler implements HttpHandler {
             String jsonMessage;
             Gson gson = new Gson();
 
-
             // This splits the string where it finds the slash, route can be determined based on length.
             String[] items = fullURI.split("/");
             String username = items[2];

@@ -33,11 +33,10 @@ public class EventHandler implements HttpHandler {
 
             String authToken = exchange.getRequestHeaders().getFirst("Authorization");
             EventService eventService = new EventService(authToken);
-            ResultMessage resultMessage = null;
+            ResultMessage resultMessage;
 
             if (items.length == 2){
                 resultMessage = eventService.findAllEvents();
-
             } else if (items.length == 3){
                 resultMessage = eventService.findEvent(items[2]);
             } else {

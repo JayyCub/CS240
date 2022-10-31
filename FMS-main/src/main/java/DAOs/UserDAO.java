@@ -15,7 +15,7 @@ public class UserDAO {
 
     /**
      * Constructor for UserDAO object, associates connection to DB
-     * @param conn
+     * @param conn Connection to DB
      */
     public UserDAO(Connection conn){this.conn = conn;}
 
@@ -97,7 +97,6 @@ public class UserDAO {
         } catch (SQLException sqlException){
             System.out.println("Error: UserDAO: checkIfAccountExists(): Error checking for account");
             //System.out.println(sqlException);
-
             // ACCOUNT NOT FOUND
             return false;
         }

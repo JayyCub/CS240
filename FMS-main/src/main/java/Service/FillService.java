@@ -17,15 +17,15 @@ import java.sql.SQLException;
  */
 public class FillService {
     /** Number of generations added in filling */
-    private int numGens;
+    private final int numGens;
     /** String username to base new family */
-    private String username;
+    private final String username;
     /** Number of new Events added to DB */
     private int numNewEvents;
     /** Number of new Events added to the DB */
     private int numNewPeople;
     /** Number of new Persons added to the DB */
-    private DatabaseUtil DB;
+    private final DatabaseUtil DB;
 
     /**
      * Constructor to set values of variables

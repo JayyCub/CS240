@@ -23,7 +23,7 @@ public class PersonService {
 
     /**
      * Constructor to sets the value of the authToken ID string
-     * @param authToken
+     * @param authToken an Auth Token to verify search
      */
     public PersonService(String authToken){
         this.authToken = authToken;

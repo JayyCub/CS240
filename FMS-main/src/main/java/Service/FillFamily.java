@@ -83,11 +83,6 @@ public class FillFamily {
     private void generateEvents() {
         Random rand = new Random();
 
-        final int CURRENT_YEAR = 2020;
-        final int DEFAULT_AGE = 22;
-        final int DEFAULT_MARRIAGE_AGE = 25;
-        final int YEARS_MARRIED_BEFORE_CHILDREN = 4;
-        final int DEFAULT_DEATH_AGE = 85;
         EventDAO eDao = new EventDAO(this.conn);
         Gson gson = new Gson();
         Location[] locations = null;
@@ -97,15 +92,12 @@ public class FillFamily {
         Event birthEvent = null;
             birthEvent = eDao.find(child.getPersonID(), "Birth");
 
-        int childBirthYear = (birthEvent == null) ? CURRENT_YEAR - DEFAULT_AGE : birthEvent.getYear();
+        int childBirthYear = (birthEvent == null) ? 2002 : birthEvent.getYear();
 
         // Assume data based on child's birth year
-        int parentMarriageYear = childBirthYear - YEARS_MARRIED_BEFORE_CHILDREN;
-        int parentBirthYear = parentMarriageYear - DEFAULT_MARRIAGE_AGE;
-        int parentDeathYear = parentBirthYear + DEFAULT_DEATH_AGE;
-
-
-
+        int parentMarriageYear = childBirthYear - 3;
+        int parentBirthYear = parentMarriageYear - 25;
+        int parentDeathYear = parentBirthYear + 85;
 
         // Get all possible locations from json file
         try {

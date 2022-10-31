@@ -58,7 +58,6 @@ public class LoginService {
         }
 
         user = retrievedUser;
-        //System.out.println("Account found!");
 
         AuthTokenDAO authTokenDAO = new AuthTokenDAO(conn);
         AuthToken authToken;
