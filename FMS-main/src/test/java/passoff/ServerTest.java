@@ -1289,7 +1289,6 @@ public class ServerTest {
         assertNotNull(motherBirth, relationship + "'s Mother's birth Event not included in passoffresult");
         int motherBirthYear = motherBirth.getYear();
         int motherAgeAtPersonBirth = personBirthYear - motherBirthYear;
-
         Assertions.assertTrue(motherAgeAtPersonBirth >= MIN_REALISTIC_PREGNANT_AGE, relationship + "'s mother was unrealistically young at user's birth, min pregnant age: " + MIN_REALISTIC_PREGNANT_AGE);
         Assertions.assertTrue(motherAgeAtPersonBirth <= MAX_REALISTIC_PREGNANT_AGE, relationship + "'s mother was unrealistically old at user's birth, max prenant age: " + MAX_REALISTIC_PREGNANT_AGE);
 
