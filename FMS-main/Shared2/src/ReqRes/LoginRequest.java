@@ -31,5 +31,3 @@ public class LoginRequest {
         return password;
     }
 }
-
-// This is not needed in final product.

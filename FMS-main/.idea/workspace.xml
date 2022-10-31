@@ -9,41 +9,17 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75548ee6-406c-492e-9ea2-39707f19f6f7" name="Changes" comment="Unversioned Files Update">
-      <change afterPath="$PROJECT_DIR$/.idea/artifacts/Shared2_jar.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__com_google_code_gson_gson_2_8_6.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_apiguardian_apiguardian_api_1_1_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_jupiter_junit_jupiter_api_5_7_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_junit_platform_junit_platform_commons_1_7_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/.idea/libraries/Maven__org_opentest4j_opentest4j_1_2_0.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/FamilyMapServerStudent.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Shared2/Shared2.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/.idea/src.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/main/main.iml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/test/test.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/CS240.iml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/modules.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/../.idea/vcs.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/artifacts/Shared_jar.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/compiler.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/compiler.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/libraries/xerial_sqlite_jdbc.xml" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/modules.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/modules.xml" afterDir="false" />
+    <list default="true" id="75548ee6-406c-492e-9ea2-39707f19f6f7" name="Changes" comment="Corrected erroneous newlines">
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/FMS_Passoff.log" beforeDir="false" afterPath="$PROJECT_DIR$/FMS_Passoff.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Family_Map.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/Family_Map.sqlite" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/src/DAO_Models/AuthToken.java" beforeDir="false" afterPath="$PROJECT_DIR$/Shared2/src/DAO_Models/AuthToken.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/src/DAO_Models/Event.java" beforeDir="false" afterPath="$PROJECT_DIR$/Shared2/src/DAO_Models/Event.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/src/DAO_Models/Person.java" beforeDir="false" afterPath="$PROJECT_DIR$/Shared2/src/DAO_Models/Person.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/src/DAO_Models/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/Shared2/src/DAO_Models/User.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/src/ReqRes/LoadRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Shared2/src/ReqRes/LoadRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/src/ReqRes/LoginRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Shared2/src/ReqRes/LoginRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/src/ReqRes/RegisterRequest.java" beforeDir="false" afterPath="$PROJECT_DIR$/Shared2/src/ReqRes/RegisterRequest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Shared/src/ReqRes/ResultMessage.java" beforeDir="false" afterPath="$PROJECT_DIR$/Shared2/src/ReqRes/ResultMessage.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FM_Client_22/app/build.gradle" beforeDir="false" afterPath="$PROJECT_DIR$/../FM_Client_22/app/build.gradle" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FM_Client_22/app/src/main/java/com/example/fm_client_22/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FM_Client_22/app/src/main/java/com/example/fm_client_22/MainActivity.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FM_Client_22/app/src/main/java/com/example/fm_client_22/ServerProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FM_Client_22/app/src/main/java/com/example/fm_client_22/ServerProxy.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/DAOs/UserDAO.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/DAOs/UserDAO.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Handlers/Database/ClearHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Handlers/Database/ClearHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Handlers/Database/FillHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Handlers/Database/FillHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Handlers/Database/LoadHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Handlers/Database/LoadHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Handlers/User/EventHandler.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Handlers/User/EventHandler.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Service/FillService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Service/FillService.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Service/LoginService.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Service/LoginService.class" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -80,7 +56,7 @@
     &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
     &quot;jdk.selected.JAVA_MODULE&quot;: &quot;15&quot;,
     &quot;last_opened_file_path&quot;: &quot;/Users/jacobthomsen/Desktop/CS240/FMS-main&quot;,
-    &quot;project.structure.last.edited&quot;: &quot;Artifacts&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
     &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
     &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;
   }
@@ -90,7 +66,7 @@
       <recent name="$PROJECT_DIR$/Shared2/src" />
     </key>
   </component>
-  <component name="RunManager" selected="Application.Server">
+  <component name="RunManager" selected="JUnit.ServerTest">
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Server" />
       <module name="FamilyMapServerStudent" />
@@ -205,7 +181,21 @@
       <option name="project" value="LOCAL" />
       <updated>1666846421178</updated>
     </task>
-    <option name="localTasksCounter" value="7" />
+    <task id="LOCAL-00007" summary="Files Update">
+      <created>1667232191794</created>
+      <option name="number" value="00007" />
+      <option name="presentableId" value="LOCAL-00007" />
+      <option name="project" value="LOCAL" />
+      <updated>1667232191795</updated>
+    </task>
+    <task id="LOCAL-00008" summary="Corrected erroneous newlines">
+      <created>1667256940042</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1667256940042</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -225,6 +215,8 @@
     <MESSAGE value="ResReq and Models moved into Shared module, server passing" />
     <MESSAGE value="It's Showtime. &#10;Client: ServerProxy now connects to server" />
     <MESSAGE value="Unversioned Files Update" />
-    <option name="LAST_COMMIT_MESSAGE" value="Unversioned Files Update" />
+    <MESSAGE value="Files Update" />
+    <MESSAGE value="Corrected erroneous newlines" />
+    <option name="LAST_COMMIT_MESSAGE" value="Corrected erroneous newlines" />
   </component>
 </project>
