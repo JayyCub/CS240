@@ -101,6 +101,13 @@ public class MainActivity extends AppCompatActivity {
                             LName.getText().toString() + "!", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                    username.setText("");
+                    password.setText("");
+                    FName.setText("");
+                    LName.setText("");
+                    email.setText("");
+                    maleGender.setActivated(false);
+                    femaleGender.setActivated(false);
                     MainActivity.this.startActivity(intent);
                 }
             } catch (IOException e) {
@@ -135,6 +142,13 @@ public class MainActivity extends AppCompatActivity {
                             dataCache.currentPerson.getLastName() + "!", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                    username.setText("");
+                    password.setText("");
+                    FName.setText("");
+                    LName.setText("");
+                    email.setText("");
+                    maleGender.setActivated(false);
+                    femaleGender.setActivated(false);
                     MainActivity.this.startActivity(intent);
                 }
             } catch (IOException e) {
