@@ -9,14 +9,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75548ee6-406c-492e-9ea2-39707f19f6f7" name="Changes" comment="Tidying up before zipping for submission">
-      <change afterPath="$PROJECT_DIR$/src/test/java/ServiceTest/ServiceTest.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FMS_Passoff.log" beforeDir="false" afterPath="$PROJECT_DIR$/FMS_Passoff.log" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/FamilyMapServerStudent.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FamilyMapServerStudent.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Family_Map.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/Family_Map.sqlite" afterDir="false" />
+    <list default="true" id="75548ee6-406c-492e-9ea2-39707f19f6f7" name="Changes" comment="Another commit">
+      <change afterPath="$PROJECT_DIR$/../FM_Client_22/app/src/main/res/layout/main_map.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FM_Client_22/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../FM_Client_22/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../FM_Client_22/app/src/main/java/com/example/fm_client_22/DataCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FM_Client_22/app/src/main/java/com/example/fm_client_22/DataCache.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FM_Client_22/app/src/main/java/com/example/fm_client_22/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FM_Client_22/app/src/main/java/com/example/fm_client_22/MainActivity.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../FM_Client_22/app/src/main/java/com/example/fm_client_22/ServerProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FM_Client_22/app/src/main/java/com/example/fm_client_22/ServerProxy.java" afterDir="false" />
     </list>
@@ -251,7 +246,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667260154118</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="Another commit">
+      <created>1668098671601</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1668098671601</updated>
+    </task>
+    <option name="localTasksCounter" value="12" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -275,6 +277,8 @@
     <MESSAGE value="Corrected erroneous newlines" />
     <MESSAGE value="Tidrying up before zipping for submission" />
     <MESSAGE value="Tidying up before zipping for submission" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tidying up before zipping for submission" />
+    <MESSAGE value="Another committ" />
+    <MESSAGE value="Another commit" />
+    <option name="LAST_COMMIT_MESSAGE" value="Another commit" />
   </component>
 </project>

@@ -7,9 +7,11 @@ import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
 import com.google.gson.Gson;
 
+import DAO_Models.Person;
 import ReqRes.LoginRequest;
 import ReqRes.RegisterRequest;
 import ReqRes.ResultMessage;
@@ -18,18 +20,6 @@ public class ServerProxy {
     String serverHost;
     String serverPort;
     DataCache dataCache;
-    /*
-    login
-    register
-    getPeople
-    getEvents
-
-    clear
-    fill
-    getPerson
-    getEvent
-    load
-     */
 
     public ServerProxy(String serverHost, String serverPort, DataCache dataCache) {
         this.serverHost = serverHost;
@@ -54,6 +44,7 @@ public class ServerProxy {
             InputStream respBody = http.getInputStream();
             String respData = readString(respBody);
             dataCache.recentResult = gson.fromJson(respData, ResultMessage.class);
+            dataCache.authToken = dataCache.recentResult.getAuthtoken();
             return true;
         } else {
             InputStream respBody = http.getErrorStream();
@@ -80,6 +71,7 @@ public class ServerProxy {
             InputStream respBody = http.getInputStream();
             String respData = readString(respBody);
             dataCache.recentResult = gson.fromJson(respData, ResultMessage.class);
+            dataCache.authToken = dataCache.recentResult.getAuthtoken();
             return true;
         } else {
             InputStream respBody = http.getErrorStream();
@@ -89,43 +81,31 @@ public class ServerProxy {
         }
     }
 
-    public String getPersonName(String username){
-        /*try {
-            URL url = new URL("http://" + serverHost + ":" + serverPort + "/user/register");
+    public void getPersonName(){
+        try {
+            URL url = new URL("http://" + serverHost + ":" + serverPort + "/person/" +
+                    dataCache.recentResult.getPersonID());
             HttpURLConnection http = (HttpURLConnection) url.openConnection();
-            http.setRequestMethod("POST");
-            http.setDoOutput(true);
-            http.addRequestProperty("Accept", "application/json");
+            http.setRequestMethod("GET");
+            http.setDoOutput(false);
+            http.addRequestProperty("Authorization", dataCache.recentResult.getAuthtoken());
             http.connect();
-
-            OutputStream reqBody = http.getOutputStream();
-            Gson gson = new Gson();
-            writeString(gson.toJson(registerRequest), reqBody);
-            reqBody.close();
 
             if (http.getResponseCode() == HttpURLConnection.HTTP_OK) {
                 InputStream respBody = http.getInputStream();
                 String respData = readString(respBody);
+                Gson gson = new Gson();
                 ResultMessage resultMessage = gson.fromJson(respData, ResultMessage.class);
-                // PUT RESULTMESSAGE IN DATACACHE
-                // THIS STORES CURRENT AUTHTOKEN AND OTHER IMPORTANT DATA
-
-                return "Registered " + registerRequest.getFirstName() + "!";
+                dataCache.currentPerson = new Person(resultMessage.getPersonID(),
+                        resultMessage.getAssociatedUsername(), resultMessage.getFirstName(),
+                        resultMessage.getLastName(), resultMessage.getGender(), resultMessage.getFatherID(),
+                        resultMessage.getMotherID(), resultMessage.getSpouseID());
             } else {
-                //System.out.println("ERROR: " + http.getResponseMessage());
-                InputStream respBody = http.getErrorStream();
-                String respData = readString(respBody);
-                //System.out.println(respData);
-                if (respData.contains("Account already exists")) {
-                    return "Error: Account already exists with username: " + registerRequest.getUsername();
-                } else {
-                    return "Error creating account";
-                }
+                System.out.println("Server returned not 200 status");
             }
-
-        }*/
-
-            return null;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     private String readString(InputStream is) throws IOException {

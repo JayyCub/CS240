@@ -1,5 +1,6 @@
 package com.example.fm_client_22;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
@@ -93,6 +94,9 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Registered! Welcome " +
                             FName.getText().toString() + " " +
                             LName.getText().toString() + "!", Toast.LENGTH_SHORT).show();
+                    setContentView(R.layout.main_map);
+                    ActionBar actionBar = getSupportActionBar();
+                    //actionBar.
                 }
             } catch (IOException e) {
                 Toast.makeText(getApplicationContext(), "Server connection error",
@@ -120,9 +124,11 @@ public class MainActivity extends AppCompatActivity {
                 } else {
                     // LOGGED IN, PASS TO NEXT PAGE
                     // GET USER'S FULL NAME
+                    proxy.getPersonName();
                     Toast.makeText(getApplicationContext(), "Welcome " +
-                            dataCache.recentResult.getFirstName() + " " +
-                            dataCache.recentResult.getLastName() + "!", Toast.LENGTH_SHORT).show();
+                            dataCache.currentPerson.getFirstName() + " " +
+                            dataCache.currentPerson.getLastName() + "!", Toast.LENGTH_SHORT).show();
+                    setContentView(R.layout.main_map);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
