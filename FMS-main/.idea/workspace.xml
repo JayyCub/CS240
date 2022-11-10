@@ -9,13 +9,28 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="75548ee6-406c-492e-9ea2-39707f19f6f7" name="Changes" comment="Tidrying up before zipping for submission">
-      <change beforePath="$PROJECT_DIR$/target/test-classes/passoff/ServerTest.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/passoff/ServerTest.class" afterDir="false" />
+    <list default="true" id="75548ee6-406c-492e-9ea2-39707f19f6f7" name="Changes" comment="Tidying up before zipping for submission">
+      <change afterPath="$PROJECT_DIR$/src/test/java/ServiceTest/ServiceTest.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FMS_Passoff.log" beforeDir="false" afterPath="$PROJECT_DIR$/FMS_Passoff.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/FamilyMapServerStudent.iml" beforeDir="false" afterPath="$PROJECT_DIR$/FamilyMapServerStudent.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Family_Map.sqlite" beforeDir="false" afterPath="$PROJECT_DIR$/Family_Map.sqlite" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FM_Client_22/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/../FM_Client_22/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FM_Client_22/app/src/main/java/com/example/fm_client_22/DataCache.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FM_Client_22/app/src/main/java/com/example/fm_client_22/DataCache.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FM_Client_22/app/src/main/java/com/example/fm_client_22/MainActivity.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FM_Client_22/app/src/main/java/com/example/fm_client_22/MainActivity.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../FM_Client_22/app/src/main/java/com/example/fm_client_22/ServerProxy.java" beforeDir="false" afterPath="$PROJECT_DIR$/../FM_Client_22/app/src/main/java/com/example/fm_client_22/ServerProxy.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="Class" />
+      </list>
+    </option>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/.." />
@@ -57,7 +72,7 @@
       <recent name="$PROJECT_DIR$/Shared2/src" />
     </key>
   </component>
-  <component name="RunManager" selected="JUnit.ServerTest">
+  <component name="RunManager" selected="JUnit.ServiceTest.negativeLoad">
     <configuration name="Server" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="Server" />
       <module name="FamilyMapServerStudent" />
@@ -66,33 +81,65 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="DAOTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServiceTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="FamilyMapServerStudent" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="DAOTests.*" />
+          <option name="PATTERN" value="ServiceTest.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="DAOTests" />
-      <option name="MAIN_CLASS_NAME" value="DAOTests.DAOTest" />
-      <option name="METHOD_NAME" value="" />
+      <option name="PACKAGE_NAME" value="ServiceTest" />
+      <option name="MAIN_CLASS_NAME" value="ServiceTest.ServiceTest" />
       <option name="TEST_OBJECT" value="class" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ServerTest" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+    <configuration name="ServiceTest.negativeLoad" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
       <module name="FamilyMapServerStudent" />
       <extension name="coverage">
         <pattern>
-          <option name="PATTERN" value="passoff.*" />
+          <option name="PATTERN" value="ServiceTest.*" />
           <option name="ENABLED" value="true" />
         </pattern>
       </extension>
-      <option name="PACKAGE_NAME" value="passoff" />
-      <option name="MAIN_CLASS_NAME" value="passoff.ServerTest" />
-      <option name="TEST_OBJECT" value="class" />
+      <option name="PACKAGE_NAME" value="ServiceTest" />
+      <option name="MAIN_CLASS_NAME" value="ServiceTest.ServiceTest" />
+      <option name="METHOD_NAME" value="negativeLoad" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceTest.positiveEvent" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="FamilyMapServerStudent" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ServiceTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ServiceTest" />
+      <option name="MAIN_CLASS_NAME" value="ServiceTest.ServiceTest" />
+      <option name="METHOD_NAME" value="positiveEvent" />
+      <option name="TEST_OBJECT" value="method" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ServiceTest.positiveLoad" type="JUnit" factoryName="JUnit" temporary="true" nameIsGenerated="true">
+      <module name="FamilyMapServerStudent" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ServiceTest.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <option name="PACKAGE_NAME" value="ServiceTest" />
+      <option name="MAIN_CLASS_NAME" value="ServiceTest.ServiceTest" />
+      <option name="METHOD_NAME" value="positiveLoad" />
+      <option name="TEST_OBJECT" value="method" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
@@ -110,14 +157,18 @@
     </configuration>
     <list>
       <item itemvalue="Application.Server" />
-      <item itemvalue="JUnit.ServerTest" />
-      <item itemvalue="JUnit.DAOTest" />
+      <item itemvalue="JUnit.ServiceTest" />
+      <item itemvalue="JUnit.ServiceTest.negativeLoad" />
+      <item itemvalue="JUnit.ServiceTest.positiveEvent" />
+      <item itemvalue="JUnit.ServiceTest.positiveLoad" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="JUnit.ServiceTest" />
         <item itemvalue="Application.Server" />
-        <item itemvalue="JUnit.ServerTest" />
-        <item itemvalue="JUnit.DAOTest" />
+        <item itemvalue="JUnit.ServiceTest.negativeLoad" />
+        <item itemvalue="JUnit.ServiceTest.positiveLoad" />
+        <item itemvalue="JUnit.ServiceTest.positiveEvent" />
       </list>
     </recent_temporary>
   </component>
@@ -193,7 +244,14 @@
       <option name="project" value="LOCAL" />
       <updated>1667260046630</updated>
     </task>
-    <option name="localTasksCounter" value="10" />
+    <task id="LOCAL-00010" summary="Tidying up before zipping for submission">
+      <created>1667260154118</created>
+      <option name="number" value="00010" />
+      <option name="presentableId" value="LOCAL-00010" />
+      <option name="project" value="LOCAL" />
+      <updated>1667260154118</updated>
+    </task>
+    <option name="localTasksCounter" value="11" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -216,6 +274,7 @@
     <MESSAGE value="Files Update" />
     <MESSAGE value="Corrected erroneous newlines" />
     <MESSAGE value="Tidrying up before zipping for submission" />
-    <option name="LAST_COMMIT_MESSAGE" value="Tidrying up before zipping for submission" />
+    <MESSAGE value="Tidying up before zipping for submission" />
+    <option name="LAST_COMMIT_MESSAGE" value="Tidying up before zipping for submission" />
   </component>
 </project>

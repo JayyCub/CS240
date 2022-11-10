@@ -24,6 +24,7 @@ public class DataCache {
     public Map<String, List<Event>> personEvents;
     public Set<String> paternalAncestors;
     public Set<String> maternalAncestors;
+    public Person currentPerson;
     public ResultMessage recentResult = new ResultMessage(null, null, null,
             null, null, null, null, null,
             null, null, null, null, null, null,
