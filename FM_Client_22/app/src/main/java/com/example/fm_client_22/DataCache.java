@@ -1,5 +1,11 @@
 package com.example.fm_client_22;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
+import java.io.Serializable;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -8,8 +14,24 @@ import DAO_Models.Event;
 import DAO_Models.Person;
 import ReqRes.ResultMessage;
 
-public class DataCache {
+public class DataCache implements Parcelable {
     private static DataCache instance = new DataCache();
+
+    protected DataCache(Parcel in) {
+        authToken = in.readString();
+    }
+
+    public static final Creator<DataCache> CREATOR = new Creator<DataCache>() {
+        @Override
+        public DataCache createFromParcel(Parcel in) {
+            return new DataCache(in);
+        }
+
+        @Override
+        public DataCache[] newArray(int size) {
+            return new DataCache[size];
+        }
+    };
 
     public static DataCache getInstance(){
         return instance;
@@ -29,4 +51,14 @@ public class DataCache {
             null, null, null, null, null,
             null, null, null, null, null, null,
             null, null, null, null, "null", false);
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(@NonNull Parcel dest, int flags) {
+        dest.writeString(authToken);
+    }
 }

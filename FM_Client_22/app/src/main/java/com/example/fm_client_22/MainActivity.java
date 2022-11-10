@@ -4,12 +4,17 @@ import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
+
+import com.google.gson.Gson;
 
 import java.io.IOException;
 import java.util.Arrays;
@@ -94,9 +99,9 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Registered! Welcome " +
                             FName.getText().toString() + " " +
                             LName.getText().toString() + "!", Toast.LENGTH_SHORT).show();
-                    setContentView(R.layout.main_map);
-                    ActionBar actionBar = getSupportActionBar();
-                    //actionBar.
+
+                    Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                    MainActivity.this.startActivity(intent);
                 }
             } catch (IOException e) {
                 Toast.makeText(getApplicationContext(), "Server connection error",
@@ -128,7 +133,9 @@ public class MainActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), "Welcome " +
                             dataCache.currentPerson.getFirstName() + " " +
                             dataCache.currentPerson.getLastName() + "!", Toast.LENGTH_SHORT).show();
-                    setContentView(R.layout.main_map);
+
+                    Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                    MainActivity.this.startActivity(intent);
                 }
             } catch (IOException e) {
                 e.printStackTrace();
@@ -147,4 +154,6 @@ public class MainActivity extends AppCompatActivity {
                 !FName.getText().toString().equals("") && !LName.getText().toString().equals("") &&
                 !email.getText().toString().equals("") && (maleGender.isChecked() || femaleGender.isChecked()));
     }
+
+
 }
