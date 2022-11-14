@@ -108,6 +108,8 @@ public class MainActivity extends AppCompatActivity {
                     email.setText("");
                     maleGender.setActivated(false);
                     femaleGender.setActivated(false);
+                    loginButton.setEnabled(false);
+                    registerButton.setEnabled(false);
                     MainActivity.this.startActivity(intent);
                 }
             } catch (IOException e) {
@@ -149,6 +151,8 @@ public class MainActivity extends AppCompatActivity {
                     email.setText("");
                     maleGender.setActivated(false);
                     femaleGender.setActivated(false);
+                    loginButton.setEnabled(false);
+                    registerButton.setEnabled(false);
                     MainActivity.this.startActivity(intent);
                 }
             } catch (IOException e) {

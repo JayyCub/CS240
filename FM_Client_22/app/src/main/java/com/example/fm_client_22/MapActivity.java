@@ -24,3 +24,5 @@ public class MapActivity extends AppCompatActivity {
         return true;
     }
 }
+
+// HANDLE BACK BUTTON TO LOGIN PAGE
