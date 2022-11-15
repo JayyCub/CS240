@@ -6,6 +6,7 @@ import android.os.Parcelable;
 import androidx.annotation.NonNull;
 
 import java.io.Serializable;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
@@ -40,9 +41,11 @@ public class DataCache implements Parcelable {
     private DataCache(){
     }
 
+    public String serverHost = "";
+    public String port = "";
     public String authToken = "";
-    public Map<String, Person> people;
-    public Map<String, Event> events;
+    public Map<String, Person> people = new HashMap<>();
+    public Map<String, Event> events = new HashMap<>();
     public Map<String, List<Event>> personEvents;
     public Set<String> paternalAncestors;
     public Set<String> maternalAncestors;

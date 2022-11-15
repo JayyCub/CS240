@@ -6,11 +6,10 @@ import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
 import java.net.URL;
 import com.google.gson.Gson;
 
+import DAO_Models.Event;
 import DAO_Models.Person;
 import ReqRes.LoginRequest;
 import ReqRes.RegisterRequest;
@@ -19,12 +18,11 @@ import ReqRes.ResultMessage;
 public class ServerProxy {
     String serverHost;
     String serverPort;
-    DataCache dataCache;
+    DataCache dataCache = DataCache.getInstance();
 
-    public ServerProxy(String serverHost, String serverPort, DataCache dataCache) {
+    public ServerProxy(String serverHost, String serverPort) {
         this.serverHost = serverHost;
         this.serverPort = serverPort;
-        this.dataCache = dataCache;
     }
 
     boolean register(RegisterRequest registerRequest) throws IOException {
@@ -33,6 +31,7 @@ public class ServerProxy {
         http.setRequestMethod("POST");
         http.setDoOutput(true);
         http.addRequestProperty("Accept", "application/json");
+        http.setConnectTimeout(1000);
         http.connect();
 
         OutputStream reqBody = http.getOutputStream();
@@ -41,6 +40,8 @@ public class ServerProxy {
         reqBody.close();
 
         if (http.getResponseCode() == HttpURLConnection.HTTP_OK) {
+            dataCache.serverHost = serverHost;
+            dataCache.port = serverPort;
             InputStream respBody = http.getInputStream();
             String respData = readString(respBody);
             dataCache.recentResult = gson.fromJson(respData, ResultMessage.class);
@@ -60,6 +61,7 @@ public class ServerProxy {
         http.setRequestMethod("POST");
         http.setDoOutput(true);
         http.addRequestProperty("Accept", "application/json");
+        http.setConnectTimeout(1000);
         http.connect();
 
         OutputStream reqBody = http.getOutputStream();
@@ -68,6 +70,8 @@ public class ServerProxy {
         reqBody.close();
 
         if (http.getResponseCode() == HttpURLConnection.HTTP_OK) {
+            dataCache.serverHost = serverHost;
+            dataCache.port = serverPort;
             InputStream respBody = http.getInputStream();
             String respData = readString(respBody);
             dataCache.recentResult = gson.fromJson(respData, ResultMessage.class);
@@ -89,6 +93,7 @@ public class ServerProxy {
             http.setRequestMethod("GET");
             http.setDoOutput(false);
             http.addRequestProperty("Authorization", dataCache.recentResult.getAuthtoken());
+            http.setConnectTimeout(1000);
             http.connect();
 
             if (http.getResponseCode() == HttpURLConnection.HTTP_OK) {
@@ -103,6 +108,51 @@ public class ServerProxy {
             } else {
                 System.out.println("Server returned not 200 status");
             }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void getAllPersonData(){
+        try {
+            URL url = new URL("http://" + serverHost + ":" + serverPort + "/person");
+            HttpURLConnection http = (HttpURLConnection) url.openConnection();
+            http.setRequestMethod("GET");
+            http.setDoOutput(false);
+            http.addRequestProperty("Authorization", dataCache.authToken);
+            http.setConnectTimeout(1000);
+            http.connect();
+            if (http.getResponseCode() == HttpURLConnection.HTTP_OK){
+                InputStream respBody = http.getInputStream();
+                String respData = readString(respBody);
+                Gson gson = new Gson();
+                ResultMessage resultMessage = gson.fromJson(respData, ResultMessage.class);
+                for (int i = 0; i < resultMessage.getData().length; i++){
+                    String personString = gson.toJson(resultMessage.getData()[i]);
+                    Person person = gson.fromJson(personString, Person.class);
+                    dataCache.people.put(person.getPersonID(), person);
+                }
+            }
+
+            URL url2 = new URL("http://" + serverHost + ":" + serverPort + "/event");
+            HttpURLConnection http2 = (HttpURLConnection) url2.openConnection();
+            http2.setRequestMethod("GET");
+            http2.setDoOutput(false);
+            http2.addRequestProperty("Authorization", dataCache.authToken);
+            http2.setConnectTimeout(1000);
+            http2.connect();
+            if (http2.getResponseCode() == HttpURLConnection.HTTP_OK){
+                InputStream respBody = http2.getInputStream();
+                String respData = readString(respBody);
+                Gson gson = new Gson();
+                ResultMessage resultMessage = gson.fromJson(respData, ResultMessage.class);
+                for (int i = 0; i < resultMessage.getData().length; i++){
+                    String personString = gson.toJson(resultMessage.getData()[i]);
+                    Event event = gson.fromJson(personString, Event.class);
+                    dataCache.events.put(event.getPersonID(), event);
+                }
+            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }

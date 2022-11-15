@@ -27,6 +27,9 @@
         <activity
             android:name=".MapActivity"
             />
+        <activity
+            android:name=".SettingsActivity"
+            android:parentActivityName=".MapActivity"/>
     </application>
 
 

@@ -78,8 +78,7 @@ public class MainActivity extends AppCompatActivity {
             if (maleGender.isChecked()) gender = 'm';
             else if (femaleGender.isChecked()) gender = 'f';
 
-            ServerProxy proxy = new ServerProxy(host.getText().toString(), port.getText().toString(),
-                    this.dataCache);
+            ServerProxy proxy = new ServerProxy(host.getText().toString(), port.getText().toString());
             RegisterRequest registerRequest = new RegisterRequest(username.getText().toString(),
                     password.getText().toString(), email.getText().toString(),
                     FName.getText().toString(), LName.getText().toString(), gender);
@@ -112,15 +111,14 @@ public class MainActivity extends AppCompatActivity {
                     registerButton.setEnabled(false);
                     MainActivity.this.startActivity(intent);
                 }
-            } catch (IOException e) {
+            } catch (IOException | Error e) {
                 Toast.makeText(getApplicationContext(), "Server connection error",
                         Toast.LENGTH_SHORT).show();
             }
         });
 
         loginButton.setOnClickListener(view -> {
-            ServerProxy proxy = new ServerProxy(host.getText().toString(), port.getText().toString(),
-                    dataCache);
+            ServerProxy proxy = new ServerProxy(host.getText().toString(), port.getText().toString());
             LoginRequest loginRequest = new LoginRequest(username.getText().toString(),
                     password.getText().toString());
 
@@ -144,6 +142,7 @@ public class MainActivity extends AppCompatActivity {
                             dataCache.currentPerson.getLastName() + "!", Toast.LENGTH_SHORT).show();
 
                     Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                    MainActivity.this.startActivity(intent);
                     username.setText("");
                     password.setText("");
                     FName.setText("");
@@ -153,9 +152,8 @@ public class MainActivity extends AppCompatActivity {
                     femaleGender.setActivated(false);
                     loginButton.setEnabled(false);
                     registerButton.setEnabled(false);
-                    MainActivity.this.startActivity(intent);
                 }
-            } catch (IOException e) {
+            } catch (IOException | Error e) {
                 e.printStackTrace();
                 Toast.makeText(getApplicationContext(), "Server connection error",
                         Toast.LENGTH_SHORT).show();
