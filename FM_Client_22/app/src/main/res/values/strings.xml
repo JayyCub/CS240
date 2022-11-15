@@ -26,4 +26,20 @@
     <string name="fileMenu">File</string>
     <string name="fileMenuSelectedMessage">You selected this button</string>
     <string name="menuTitle">TITLE</string>
+    <string name="LifeString">Life Story Lines</string>
+    <string name="LifeSubstring">SHOW LIFE STORY LINES</string>
+    <string name="FamilyTreeString">Family Tree Lines</string>
+    <string name="TreeSubstring">SHOW FAMILY TREE LINES</string>
+    <string name="SpouseString">Spouse Lines</string>
+    <string name="SpouseSubstring">SHOW SPOUSE LINES</string>
+    <string name="FatherString">Father\' Side</string>
+    <string name="FatherSubstring">FILTER BY FATHER\'S SIDE OF FAMILY</string>
+    <string name="MotherString">Mother\'s Side</string>
+    <string name="MotherSubstring">FILTER BY MOTHER\'S SIDE OF FAMILY</string>
+    <string name="MaleString">Male Events</string>
+    <string name="MaleSubstring">FILTER EVENTS BASED ON GENDER</string>
+    <string name="FemaleString">Female Events</string>
+    <string name="FemaleSubstring">FILTER EVENTS BASED ON GENDER</string>
+    <string name="MenuSettingsTitle">Family Map: Settings</string>
+
 </resources>

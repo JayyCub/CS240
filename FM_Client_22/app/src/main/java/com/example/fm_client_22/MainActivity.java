@@ -70,9 +70,7 @@ public class MainActivity extends AppCompatActivity {
         for (RadioButton radioButton : Arrays.asList(maleGender, femaleGender)) {
             radioButton.setOnClickListener(view -> allFieldsValid());
         }
-
-
-
+        
         registerButton.setOnClickListener(view -> {
             char gender = 0;
             if (maleGender.isChecked()) gender = 'm';
@@ -159,7 +157,6 @@ public class MainActivity extends AppCompatActivity {
                         Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     public void allFieldsValid(){
@@ -170,6 +167,4 @@ public class MainActivity extends AppCompatActivity {
                 !FName.getText().toString().equals("") && !LName.getText().toString().equals("") &&
                 !email.getText().toString().equals("") && (maleGender.isChecked() || femaleGender.isChecked()));
     }
-
-
 }

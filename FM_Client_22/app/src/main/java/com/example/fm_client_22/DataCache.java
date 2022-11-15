@@ -46,9 +46,18 @@ public class DataCache implements Parcelable {
     public String authToken = "";
     public Map<String, Person> people = new HashMap<>();
     public Map<String, Event> events = new HashMap<>();
-    public Map<String, List<Event>> personEvents;
+    //public Map<String, List<Event>> personEvents;
     public Set<String> paternalAncestors;
     public Set<String> maternalAncestors;
+
+    boolean lifeSetting = true;
+    boolean treeSetting = true;
+    boolean spouseSetting = true;
+    boolean fatherSetting = true;
+    boolean motherSetting = true;
+    boolean maleSetting = true;
+    boolean femaleSetting = true;
+
     public Person currentPerson;
     public ResultMessage recentResult = new ResultMessage(null, null, null,
             null, null, null, null, null,
@@ -63,5 +72,22 @@ public class DataCache implements Parcelable {
     @Override
     public void writeToParcel(@NonNull Parcel dest, int flags) {
         dest.writeString(authToken);
+    }
+
+    public void clearData(){
+        serverHost = "";
+        port = "";
+        authToken = "";
+        people.clear();
+        events.clear();
+        //personEvents.clear();
+        //paternalAncestors.clear();
+        //maternalAncestors.clear();
+        currentPerson = null;
+        recentResult = new ResultMessage(null, null, null,
+                null, null, null, null, null,
+                null, null, null, null, null, null,
+                null, null, null, null, "null", false);
+
     }
 }
