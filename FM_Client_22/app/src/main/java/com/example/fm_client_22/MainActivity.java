@@ -70,7 +70,7 @@ public class MainActivity extends AppCompatActivity {
         for (RadioButton radioButton : Arrays.asList(maleGender, femaleGender)) {
             radioButton.setOnClickListener(view -> allFieldsValid());
         }
-        
+
         registerButton.setOnClickListener(view -> {
             char gender = 0;
             if (maleGender.isChecked()) gender = 'm';

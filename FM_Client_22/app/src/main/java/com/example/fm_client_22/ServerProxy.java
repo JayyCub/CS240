@@ -149,7 +149,7 @@ public class ServerProxy {
                 for (int i = 0; i < resultMessage.getData().length; i++){
                     String personString = gson.toJson(resultMessage.getData()[i]);
                     Event event = gson.fromJson(personString, Event.class);
-                    dataCache.events.put(event.getPersonID(), event);
+                    dataCache.events.put(event.getEventID(), event);
                 }
             }
 

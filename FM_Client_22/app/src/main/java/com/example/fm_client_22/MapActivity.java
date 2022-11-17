@@ -1,27 +1,33 @@
 package com.example.fm_client_22;
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.appcompat.app.AppCompatActivity;
+
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuInflater;
 import android.view.MenuItem;
-import android.widget.Toast;
-
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
 
 public class MapActivity extends AppCompatActivity {
-    public DataCache dataCache = DataCache.getInstance();
 
-    @RequiresApi(api = 33)
+    @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.loading_screen);
-        // GET ALL Needed data, save to DataCache
-        ServerProxy proxy = new ServerProxy(dataCache.serverHost, dataCache.port);
-        proxy.getAllPersonData();
         setContentView(R.layout.main_map);
 
+
+        FragmentManager fragmentManager = getSupportFragmentManager();
+        Fragment fragment = fragmentManager.findFragmentById(R.id.fragmentContainer);
+
+        if(fragment == null) {
+            MapFragment mapFragment = new MapFragment();
+            fragmentManager
+                    .beginTransaction()
+                    .add(R.id.fragmentContainer, mapFragment)
+                    .commit();
+        }
     }
 
     @Override
@@ -37,7 +43,6 @@ public class MapActivity extends AppCompatActivity {
                 //Toast.makeText(this, "SEARCH BUTTON CLICKED", Toast.LENGTH_SHORT).show();
                 return true;
             case R.id.menuSettings:
-                //Toast.makeText(this, "SETTINGS BUTTON CLICKED", Toast.LENGTH_SHORT).show();
                 Intent intent = new Intent(this, SettingsActivity.class);
                 this.startActivity(intent);
 
@@ -46,6 +51,5 @@ public class MapActivity extends AppCompatActivity {
                 return super.onOptionsItemSelected(menuItem);
         }
     }
-}
 
-// HANDLE BACK BUTTON TO LOGIN PAGE
+}
