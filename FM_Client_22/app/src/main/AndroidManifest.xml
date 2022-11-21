@@ -48,6 +48,9 @@
         <activity
             android:name=".SettingsActivity"
             android:parentActivityName=".MapActivity" />
+        <activity
+            android:name=".SearchActivity"
+            android:parentActivityName=".MapActivity" />
     </application>
 
 </manifest>

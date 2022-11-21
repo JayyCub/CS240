@@ -40,12 +40,12 @@ public class MapActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem menuItem){
         switch (menuItem.getItemId()){
             case R.id.menuSearch:
-                //Toast.makeText(this, "SEARCH BUTTON CLICKED", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(this, SearchActivity.class);
+                this.startActivity(intent);
                 return true;
             case R.id.menuSettings:
-                Intent intent = new Intent(this, SettingsActivity.class);
-                this.startActivity(intent);
-
+                Intent intent2 = new Intent(this, SettingsActivity.class);
+                this.startActivity(intent2);
                 return true;
             default:
                 return super.onOptionsItemSelected(menuItem);
