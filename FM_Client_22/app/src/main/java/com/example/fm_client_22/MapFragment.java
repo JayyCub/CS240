@@ -52,7 +52,6 @@ public class MapFragment extends Fragment implements OnMapReadyCallback, GoogleM
     }
 
     public void placeMarkers(){
-        System.out.println(dataCache.people.size() + "\n\n\n\n\n");
         if (dataCache.events.size() == 0 | dataCache.people.size() == 0){
             ServerProxy serverProxy = new ServerProxy(dataCache.serverHost, dataCache.port);
             serverProxy.getAllPersonData();

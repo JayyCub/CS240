@@ -41,6 +41,11 @@
     <string name="FemaleString">Female Events</string>
     <string name="FemaleSubstring">FILTER EVENTS BASED ON GENDER</string>
     <string name="MenuSettingsTitle">Family Map: Settings</string>
-    <string name="title_activity_maps">MapsActivity</string>
+    <string name="title_activity_maps">The Family MAP</string>
     <string name="mapFragmentMessage">Some message about the map</string>
+    <string name="loginLabel">Family Map: Log In</string>
+    <string name="mapLabel">Family Map: Map View</string>
+    <string name="searchLabel">Family Map: Search</string>
+    <string name="settingsLabel">Family Map: Settings</string>
+
 </resources>
