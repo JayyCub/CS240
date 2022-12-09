@@ -53,6 +53,14 @@
             android:name=".SearchActivity"
             android:parentActivityName=".MapActivity"
             android:label="@string/searchLabel" />
+        <activity
+            android:name=".PersonActivity"
+            android:parentActivityName=".SearchActivity"
+            android:label="Family Map: Person"/>
+        <activity
+            android:name=".EventActivity"
+            android:parentActivityName=".SearchActivity"
+            android:label="Family Map: Event"/>
     </application>
 
 </manifest>

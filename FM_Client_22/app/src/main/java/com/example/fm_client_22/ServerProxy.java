@@ -1,13 +1,20 @@
 package com.example.fm_client_22;
 
+import android.widget.Toast;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
+import java.net.MalformedURLException;
+import java.net.ProtocolException;
 import java.net.URL;
+import java.util.Objects;
+
 import com.google.gson.Gson;
+import com.google.gson.JsonSyntaxException;
 
 import DAO_Models.Event;
 import DAO_Models.Person;
@@ -16,8 +23,8 @@ import ReqRes.RegisterRequest;
 import ReqRes.ResultMessage;
 
 public class ServerProxy {
-    String serverHost;
-    String serverPort;
+    private final String serverHost;
+    private final String serverPort;
     DataCache dataCache = DataCache.getInstance();
 
     public ServerProxy(String serverHost, String serverPort) {
@@ -25,62 +32,72 @@ public class ServerProxy {
         this.serverPort = serverPort;
     }
 
-    boolean register(RegisterRequest registerRequest) throws IOException {
-        URL url = new URL("http://" + serverHost + ":" + serverPort + "/user/register");
-        HttpURLConnection http = (HttpURLConnection) url.openConnection();
-        http.setRequestMethod("POST");
-        http.setDoOutput(true);
-        http.addRequestProperty("Accept", "application/json");
-        http.setConnectTimeout(1000);
-        http.connect();
+    boolean register(RegisterRequest registerRequest) {
+        try {
+            URL url = new URL("http://" + serverHost + ":" + serverPort + "/user/register");
+            HttpURLConnection http = (HttpURLConnection) url.openConnection();
+            http.setRequestMethod("POST");
+            http.setDoOutput(true);
+            http.addRequestProperty("Accept", "application/json");
+            http.setConnectTimeout(1000);
+            http.connect();
 
-        OutputStream reqBody = http.getOutputStream();
-        Gson gson = new Gson();
-        writeString(gson.toJson(registerRequest), reqBody);
-        reqBody.close();
+            OutputStream reqBody = http.getOutputStream();
+            Gson gson = new Gson();
+            writeString(gson.toJson(registerRequest), reqBody);
+            reqBody.close();
 
-        if (http.getResponseCode() == HttpURLConnection.HTTP_OK) {
-            dataCache.serverHost = serverHost;
-            dataCache.port = serverPort;
-            InputStream respBody = http.getInputStream();
-            String respData = readString(respBody);
-            dataCache.recentResult = gson.fromJson(respData, ResultMessage.class);
-            dataCache.authToken = dataCache.recentResult.getAuthtoken();
-            return true;
-        } else {
-            InputStream respBody = http.getErrorStream();
-            String respData = readString(respBody);
-            dataCache.recentResult = gson.fromJson(respData, ResultMessage.class);
+            if (http.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                dataCache.serverHost = serverHost;
+                dataCache.port = serverPort;
+                InputStream respBody = http.getInputStream();
+                String respData = readString(respBody);
+                dataCache.recentResult = gson.fromJson(respData, ResultMessage.class);
+                dataCache.authToken = dataCache.recentResult.getAuthtoken();
+                return true;
+            } else {
+                InputStream respBody = http.getErrorStream();
+                String respData = readString(respBody);
+                dataCache.recentResult = gson.fromJson(respData, ResultMessage.class);
+                return false;
+            }
+        } catch (IOException | JsonSyntaxException e) {
+            e.printStackTrace();
             return false;
         }
     }
 
-    boolean login(LoginRequest loginRequest) throws IOException {
-        URL url = new URL("http://" + serverHost + ":" + serverPort +"/user/login");
-        HttpURLConnection http = (HttpURLConnection) url.openConnection();
-        http.setRequestMethod("POST");
-        http.setDoOutput(true);
-        http.addRequestProperty("Accept", "application/json");
-        http.setConnectTimeout(1000);
-        http.connect();
+    boolean login(LoginRequest loginRequest) {
+        try {
+            URL url = new URL("http://" + serverHost + ":" + serverPort + "/user/login");
+            HttpURLConnection http = (HttpURLConnection) url.openConnection();
+            http.setRequestMethod("POST");
+            http.setDoOutput(true);
+            http.addRequestProperty("Accept", "application/json");
+            http.setConnectTimeout(1000);
+            http.connect();
 
-        OutputStream reqBody = http.getOutputStream();
-        Gson gson = new Gson();
-        writeString(gson.toJson(loginRequest), reqBody);
-        reqBody.close();
+            OutputStream reqBody = http.getOutputStream();
+            Gson gson = new Gson();
+            writeString(gson.toJson(loginRequest), reqBody);
+            reqBody.close();
 
-        if (http.getResponseCode() == HttpURLConnection.HTTP_OK) {
-            dataCache.serverHost = serverHost;
-            dataCache.port = serverPort;
-            InputStream respBody = http.getInputStream();
-            String respData = readString(respBody);
-            dataCache.recentResult = gson.fromJson(respData, ResultMessage.class);
-            dataCache.authToken = dataCache.recentResult.getAuthtoken();
-            return true;
-        } else {
-            InputStream respBody = http.getErrorStream();
-            String respData = readString(respBody);
-            dataCache.recentResult = gson.fromJson(respData, ResultMessage.class);
+            if (http.getResponseCode() == HttpURLConnection.HTTP_OK) {
+                dataCache.serverHost = serverHost;
+                dataCache.port = serverPort;
+                InputStream respBody = http.getInputStream();
+                String respData = readString(respBody);
+                dataCache.recentResult = gson.fromJson(respData, ResultMessage.class);
+                dataCache.authToken = dataCache.recentResult.getAuthtoken();
+                return true;
+            } else {
+                InputStream respBody = http.getErrorStream();
+                String respData = readString(respBody);
+                dataCache.recentResult = gson.fromJson(respData, ResultMessage.class);
+                return false;
+            }
+        } catch (IOException | JsonSyntaxException e) {
+            e.printStackTrace();
             return false;
         }
     }
@@ -132,6 +149,15 @@ public class ServerProxy {
                     Person person = gson.fromJson(personString, Person.class);
                     dataCache.people.put(person.getPersonID(), person);
                 }
+
+                DataUtility utility = new DataUtility();
+                if (dataCache.people.get(dataCache.currentPerson.getFatherID()) != null) {
+                    utility.addPaternalSide(dataCache.people.get(dataCache.currentPerson.getFatherID()));
+                }
+                if (dataCache.people.get(dataCache.currentPerson.getMotherID()) != null) {
+                    utility.addMaternalSide(dataCache.people.get(dataCache.currentPerson.getMotherID()));
+                }
+
             }
 
             URL url2 = new URL("http://" + serverHost + ":" + serverPort + "/event");
@@ -155,6 +181,23 @@ public class ServerProxy {
 
         } catch (IOException e) {
             e.printStackTrace();
+        }
+    }
+
+    public boolean clearDatabase(){
+        try {
+            URL url = new URL("http://" + serverHost + ":" + serverPort + "/clear");
+
+            HttpURLConnection http = (HttpURLConnection) url.openConnection();
+            http.setRequestMethod("POST");
+            http.setConnectTimeout(1000);
+            http.connect();
+            dataCache.clearData();
+
+            return http.getResponseCode() == HttpURLConnection.HTTP_OK;
+        } catch (IOException e) {
+            e.printStackTrace();
+            return false;
         }
     }
 

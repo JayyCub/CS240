@@ -4,13 +4,13 @@
     android:id="@string/menuTitle">
     <item
         android:id="@+id/menuSearch"
-        android:title="@string/fileMenu"
+        android:title="@string/menuSearch"
         app:showAsAction="ifRoom|withText"
         android:icon="@drawable/search"/>
 
     <item
         android:id="@+id/menuSettings"
-        android:title="@string/fileMenu"
+        android:title="@string/menuSettings"
         app:showAsAction="ifRoom|withText"
         android:icon="@drawable/settings"/>
 

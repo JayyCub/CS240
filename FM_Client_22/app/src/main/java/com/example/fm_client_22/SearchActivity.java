@@ -1,24 +1,24 @@
 package com.example.fm_client_22;
 
+import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.google.android.gms.maps.model.BitmapDescriptorFactory;
+import com.google.gson.Gson;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Objects;
 
 import DAO_Models.Event;
@@ -30,6 +30,7 @@ public class SearchActivity extends AppCompatActivity {
     private static final int PERSON_TYPE = 1;
     SearchView searchView;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.search);
@@ -51,6 +52,7 @@ public class SearchActivity extends AppCompatActivity {
             public boolean onQueryTextChange(String newText) {
                 adapter.people.clear();
                 for (String key: dataCache.people.keySet()) {
+                    if (!dataCache.checkSearchFilter(key)){ continue; }
                     String dataString = dataCache.people.get(key).getFirstName().toLowerCase() +
                             dataCache.people.get(key).getLastName().toLowerCase();
                     newText = newText.replaceAll(" ", "");
@@ -62,6 +64,7 @@ public class SearchActivity extends AppCompatActivity {
                 adapter.events.clear();
                 for (String key: dataCache.events.keySet()) {
                     Event event = dataCache.events.get(key);
+                    if (!dataCache.checkFilter(event.getPersonID())){ continue; }
                     Person assocPerson = dataCache.people.get(event.getPersonID());
                     String dataString = assocPerson.getFirstName().toLowerCase() +
                             assocPerson.getLastName().toLowerCase() +
@@ -84,11 +87,14 @@ public class SearchActivity extends AppCompatActivity {
         public List<Person> people = new ArrayList<>();
         public List<Event> events = new ArrayList<>();
 
+        @RequiresApi(api = Build.VERSION_CODES.N)
         RecyclerAdapter(){
             for (String key: dataCache.people.keySet()) {
+                if (!dataCache.checkSearchFilter(key)){ continue; }
                 this.people.add(dataCache.people.get(key));
             }
             for (String key: dataCache.events.keySet()) {
+                if (!dataCache.checkFilter(dataCache.events.get(key).getPersonID())){ continue; }
                 this.events.add(dataCache.events.get(key));
             }
         }
@@ -104,9 +110,9 @@ public class SearchActivity extends AppCompatActivity {
             View view;
 
             if (viewType == EVENT_TYPE) {
-                view = getLayoutInflater().inflate(R.layout.event, parent, false);
+                view = getLayoutInflater().inflate(R.layout.recycler_event, parent, false);
             } else {
-                view = getLayoutInflater().inflate(R.layout.person, parent, false);
+                view = getLayoutInflater().inflate(R.layout.recycler_person, parent, false);
             }
             return new RecyclerViewHolder(view, viewType);
         }
@@ -149,46 +155,8 @@ public class SearchActivity extends AppCompatActivity {
                     dataCache.people.get(event.getPersonID()).getLastName());
 
             ImageView imageView = itemView.findViewById(R.id.resultIcon);
-            if (type.charAt(0) == 'a' | type.charAt(0) == 'b')
-                imageView.setImageResource(R.drawable.blue2marker);
-            else if (type.charAt(0) == 'c' | type.charAt(0) == 'd')
-                imageView.setImageResource(R.drawable.bluemarker);
-            else if (type.charAt(0) == 'e' | type.charAt(0) == 'f')
-                imageView.setImageResource(R.drawable.greenmarker);
-            else if (type.charAt(0) == 'g' | type.charAt(0) == 'h')
-                imageView.setImageResource(R.drawable.lightbluemarker);
-            else if (type.charAt(0) == 'i' | type.charAt(0) == 'j')
-                imageView.setImageResource(R.drawable.lightpurplemarker);
-            else if (type.charAt(0) == 'k' | type.charAt(0) == 'l')
-                imageView.setImageResource(R.drawable.limemarker);
-            else if (type.charAt(0) == 'm' | type.charAt(0) == 'n')
-                imageView.setImageResource(R.drawable.navymarker);
-            else if (type.charAt(0) == 'o' | type.charAt(0) == 'p')
-                imageView.setImageResource(R.drawable.orangemarker);
-            else if (type.charAt(0) == 'q' | type.charAt(0) == 'r')
-                imageView.setImageResource(R.drawable.pinkmarker);
-            else if (type.charAt(0) == 's' | type.charAt(0) == 't')
-                imageView.setImageResource(R.drawable.purplemarker);
-            else if (type.charAt(0) == 'u' | type.charAt(0) == 'v')
-                imageView.setImageResource(R.drawable.redmarker);
-            else if (type.charAt(0) == 'w' | type.charAt(0) == 'x')
-                imageView.setImageResource(R.drawable.tealmarker);
-            else if (type.charAt(0) == 'y' | type.charAt(0) == 'z')
-                imageView.setImageResource(R.drawable.yellowmarker);
-
-            switch (type) {
-                case "birth":
-                    imageView.setImageResource(R.drawable.birthmarker);
-                    break;
-                case "marriage":
-                    imageView.setImageResource(R.drawable.marriagemarker);
-                    break;
-                case "death":
-                    imageView.setImageResource(R.drawable.deathmarker);
-                    break;
-
-            }
-
+            DataUtility utility = new DataUtility();
+            imageView.setImageResource(utility.getMarker(type));
         }
         public void bind(Person person) {
             this.person = person;
@@ -205,13 +173,19 @@ public class SearchActivity extends AppCompatActivity {
         @Override
         public void onClick(View v) {
             if (viewType == EVENT_TYPE){
-                Toast.makeText(SearchActivity.this, event.getEventType() + " " +
-                        event.getPersonID(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(SearchActivity.this, EventActivity.class);
+                Gson gson = new Gson();
+                String eventData = gson.toJson(event);
+                intent.putExtra("eventString", eventData);
+                SearchActivity.this.startActivity(intent);
+
             } else {
-                Toast.makeText(SearchActivity.this, person.getFirstName() + " " +
-                        person.getLastName(), Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(SearchActivity.this, PersonActivity.class);
+                Gson gson = new Gson();
+                String data = gson.toJson(person);
+                intent.putExtra("personData", data);
+                SearchActivity.this.startActivity(intent);
             }
         }
     }
-
 }

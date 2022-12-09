@@ -23,7 +23,8 @@
     <string name="regiClick">You clicked register</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
-    <string name="fileMenu">File</string>
+    <string name="menuSearch">Search</string>
+    <string name="menuSettings">Settings</string>
     <string name="fileMenuSelectedMessage">You selected this button</string>
     <string name="menuTitle">TITLE</string>
     <string name="LifeString">Life Story Lines</string>
@@ -32,7 +33,7 @@
     <string name="TreeSubstring">SHOW FAMILY TREE LINES</string>
     <string name="SpouseString">Spouse Lines</string>
     <string name="SpouseSubstring">SHOW SPOUSE LINES</string>
-    <string name="FatherString">Father\' Side</string>
+    <string name="FatherString">Father\'s Side</string>
     <string name="FatherSubstring">FILTER BY FATHER\'S SIDE OF FAMILY</string>
     <string name="MotherString">Mother\'s Side</string>
     <string name="MotherSubstring">FILTER BY MOTHER\'S SIDE OF FAMILY</string>
@@ -47,5 +48,11 @@
     <string name="mapLabel">Family Map: Map View</string>
     <string name="searchLabel">Family Map: Search</string>
     <string name="settingsLabel">Family Map: Settings</string>
+    <string name="listEventsTitle">Life Events</string>
+    <string name="listPeopleTitle">Family</string>
+    <string name="spouse">Spouse</string>
+    <string name="child">Child</string>
+    <string name="mother">Mother</string>
+    <string name="father">Father</string>
 
 </resources>

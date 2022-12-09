@@ -23,6 +23,9 @@ public class MapActivity extends AppCompatActivity {
 
         if(fragment == null) {
             MapFragment mapFragment = new MapFragment();
+            Bundle bundle = new Bundle();
+            bundle.putString("eventString", getIntent().getStringExtra("eventString"));
+            mapFragment.setArguments(bundle);
             fragmentManager
                     .beginTransaction()
                     .add(R.id.fragmentContainer, mapFragment)

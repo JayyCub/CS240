@@ -1,22 +1,16 @@
 package com.example.fm_client_22;
 
-import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.StrictMode;
-import android.view.Menu;
-import android.view.MenuInflater;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioButton;
 import android.widget.Toast;
 
-import com.google.gson.Gson;
-
-import java.io.IOException;
 import java.util.Arrays;
 
 import ReqRes.LoginRequest;
@@ -81,37 +75,34 @@ public class MainActivity extends AppCompatActivity {
                     password.getText().toString(), email.getText().toString(),
                     FName.getText().toString(), LName.getText().toString(), gender);
 
-            try {
-                boolean registered = proxy.register(registerRequest);
-                if (!registered) {
-                    if (dataCache.recentResult.getMessage().contains("Account already exists")) {
-                        Toast.makeText(getApplicationContext(), "Username already in use",
-                                Toast.LENGTH_SHORT).show();
-                    } else {
-                        Toast.makeText(getApplicationContext(), "Server connection error, could not register",
-                                Toast.LENGTH_SHORT).show();
-                    }
+            boolean registered = proxy.register(registerRequest);
+            if (!registered) {
+                if (dataCache.recentResult.getMessage().contains("Account already exists")) {
+                    Toast.makeText(getApplicationContext(), "Username already in use",
+                            Toast.LENGTH_SHORT).show();
                 } else {
-                    // REGISTERED, PASS TO NEXT PAGE
-                    Toast.makeText(getApplicationContext(), "Registered! Welcome " +
-                            FName.getText().toString() + " " +
-                            LName.getText().toString() + "!", Toast.LENGTH_SHORT).show();
-
-                    Intent intent = new Intent(MainActivity.this, MapActivity.class);
-                    username.setText("");
-                    password.setText("");
-                    FName.setText("");
-                    LName.setText("");
-                    email.setText("");
-                    maleGender.setActivated(false);
-                    femaleGender.setActivated(false);
-                    loginButton.setEnabled(false);
-                    registerButton.setEnabled(false);
-                    MainActivity.this.startActivity(intent);
+                    Toast.makeText(getApplicationContext(), "Server connection error, could not register",
+                            Toast.LENGTH_SHORT).show();
                 }
-            } catch (IOException | Error e) {
-                Toast.makeText(getApplicationContext(), "Server connection error",
-                        Toast.LENGTH_SHORT).show();
+            } else {
+                // REGISTERED, PASS TO NEXT PAGE
+                proxy.getPersonName();
+                Toast.makeText(getApplicationContext(), "Registered! Welcome " +
+                        dataCache.currentPerson.getFirstName() + " " +
+                        dataCache.currentPerson.getLastName() + "!", Toast.LENGTH_SHORT).show();
+
+
+                Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                username.setText("");
+                password.setText("");
+                FName.setText("");
+                LName.setText("");
+                email.setText("");
+                maleGender.setActivated(false);
+                femaleGender.setActivated(false);
+                loginButton.setEnabled(false);
+                registerButton.setEnabled(false);
+                MainActivity.this.startActivity(intent);
             }
         });
 
@@ -119,42 +110,35 @@ public class MainActivity extends AppCompatActivity {
             ServerProxy proxy = new ServerProxy(host.getText().toString(), port.getText().toString());
             LoginRequest loginRequest = new LoginRequest(username.getText().toString(),
                     password.getText().toString());
-
-            try {
-                boolean result = proxy.login(loginRequest);
-                if (!result) {
-                    // DID NOT LOG IN
-                    String message = "Could not sign in";
-                    if (dataCache.recentResult.getMessage().contains("No account found for")) {
-                        message = "Account not found";
-                    } else if (dataCache.recentResult.getMessage().contains("Incorrect password")) {
-                        message = "Incorrect password";
-                    }
-                    Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
-                } else {
-                    // LOGGED IN, PASS TO NEXT PAGE
-                    // GET USER'S FULL NAME
-                    proxy.getPersonName();
-                    Toast.makeText(getApplicationContext(), "Welcome " +
-                            dataCache.currentPerson.getFirstName() + " " +
-                            dataCache.currentPerson.getLastName() + "!", Toast.LENGTH_SHORT).show();
-
-                    Intent intent = new Intent(MainActivity.this, MapActivity.class);
-                    MainActivity.this.startActivity(intent);
-                    username.setText("");
-                    password.setText("");
-                    FName.setText("");
-                    LName.setText("");
-                    email.setText("");
-                    maleGender.setActivated(false);
-                    femaleGender.setActivated(false);
-                    loginButton.setEnabled(false);
-                    registerButton.setEnabled(false);
+            boolean result = proxy.login(loginRequest);
+            if (!result) {
+                // DID NOT LOG IN
+                String message = "Server connection error, could not sign in";
+                if (dataCache.recentResult.getMessage().contains("No account found for")) {
+                    message = "Account not found";
+                } else if (dataCache.recentResult.getMessage().contains("Incorrect password")) {
+                    message = "Incorrect password";
                 }
-            } catch (IOException | Error e) {
-                e.printStackTrace();
-                Toast.makeText(getApplicationContext(), "Server connection error",
-                        Toast.LENGTH_SHORT).show();
+                Toast.makeText(getApplicationContext(), message, Toast.LENGTH_SHORT).show();
+            } else {
+                // LOGGED IN, PASS TO NEXT PAGE
+                // GET USER'S FULL NAME
+                proxy.getPersonName();
+                Toast.makeText(getApplicationContext(), "Welcome " +
+                        dataCache.currentPerson.getFirstName() + " " +
+                        dataCache.currentPerson.getLastName() + "!", Toast.LENGTH_SHORT).show();
+
+                Intent intent = new Intent(MainActivity.this, MapActivity.class);
+                MainActivity.this.startActivity(intent);
+                username.setText("");
+                password.setText("");
+                FName.setText("");
+                LName.setText("");
+                email.setText("");
+                maleGender.setActivated(false);
+                femaleGender.setActivated(false);
+                loginButton.setEnabled(false);
+                registerButton.setEnabled(false);
             }
         });
     }

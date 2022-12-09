@@ -5,10 +5,10 @@ import android.os.Parcelable;
 
 import androidx.annotation.NonNull;
 
-import java.io.Serializable;
 import java.util.HashMap;
-import java.util.List;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import DAO_Models.Event;
@@ -46,9 +46,8 @@ public class DataCache implements Parcelable {
     public String authToken = "";
     public Map<String, Person> people = new HashMap<>();
     public Map<String, Event> events = new HashMap<>();
-    //public Map<String, List<Event>> personEvents;
-    public Set<String> paternalAncestors;
-    public Set<String> maternalAncestors;
+    public Set<String> paternalAncestors = new HashSet<>();
+    public Set<String> maternalAncestors = new HashSet<>();
 
     boolean lifeSetting = true;
     boolean treeSetting = true;
@@ -80,9 +79,8 @@ public class DataCache implements Parcelable {
         authToken = "";
         people.clear();
         events.clear();
-        //personEvents.clear();
-        //paternalAncestors.clear();
-        //maternalAncestors.clear();
+        paternalAncestors.clear();
+        maternalAncestors.clear();
         currentPerson = null;
         recentResult = new ResultMessage(null, null, null,
                 null, null, null, null, null,
@@ -90,4 +88,27 @@ public class DataCache implements Parcelable {
                 null, null, null, null, "null", false);
 
     }
+
+    public boolean checkFilter(String id){
+        if (!this.fatherSetting && this.paternalAncestors.contains(id)){
+            return false;
+        } else if (!this.motherSetting && this.maternalAncestors.contains(id)){
+            return false;
+        } else if (!this.maleSetting && Objects.equals(this.people.get(id).getGender(), "m")){
+            return false;
+        } else if (!this.femaleSetting && Objects.equals(this.people.get(id).getGender(), "f")){
+            return false;
+        }
+        return true;
+    }
+
+    public boolean checkSearchFilter(String id){
+        if (!this.fatherSetting && this.paternalAncestors.contains(id)){
+            return false;
+        } else if (!this.motherSetting && this.maternalAncestors.contains(id)){
+            return false;
+        }
+        return true;
+    }
+
 }
